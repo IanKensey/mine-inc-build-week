@@ -1,29 +1,27 @@
-Mine Inc. Build Week Scope
+# Mine Inc. Build Week Scope
 
-The purpose of this hackathon is NOT to build the complete game.
+The purpose of this hackathon is **not** to build the complete game. It is to prove the core gameplay loop.
 
-The purpose is to prove the core gameplay loop.
+## Included
 
-Included:
+- Escape pod
+- Camera
+- Asteroid movement
+- Trajectories
+- Mining
+- Resource drops
+- Resource collection
+- Manufacture one module
+- Attach module
 
-✓ Escape pod
-✓ Camera
-✓ Asteroid movement
-✓ Trajectories
-✓ Mining
-✓ Resource drops
-✓ Resource collection
-✓ Manufacture one module
-✓ Attach module
+## Excluded
 
-Excluded:
-
-✗ Pirates
-✗ Research
-✗ Trading
-✗ Tech tree
-✗ Campaign
-✗ Power management
-✗ Repair
-✗ Shields
-✗ Advanced automation
+- Pirates
+- Research
+- Trading
+- Tech tree
+- Campaign
+- Power management
+- Repair
+- Shields
+- Advanced automation

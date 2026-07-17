@@ -1,0 +1,21 @@
+# Godot 4+ generated files
+.godot/
+
+# Godot export output
+build/
+dist/
+
+# Mono/C# generated files (harmless if the GDScript-only plan changes)
+.mono/
+
+# Local editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Temporary and backup files
+*.tmp
+*.bak
+*~
