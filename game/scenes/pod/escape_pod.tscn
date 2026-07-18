@@ -124,3 +124,6 @@ mesh = SubResource("CylinderMesh_antenna")
 [node name="AntennaBeacon" type="MeshInstance3D" parent="."]
 position = Vector3(0, 3.0, 0)
 mesh = SubResource("SphereMesh_beacon")
+
+[node name="MiningOrigin" type="Marker3D" parent="."]
+position = Vector3(0, 0.3, 1.55)

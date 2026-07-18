@@ -12,7 +12,7 @@ The prototype environment is:
 - Typed GDScript
 - Windows 11
 
-The current documented prototype version is `0.1.0-buildweek`, stored in the root `VERSION` file. The Milestone 1 HUD presents this as `Prototype v0.1.0`.
+The current documented prototype version is `0.2.0-buildweek`, stored in the root `VERSION` file. The HUD presents this as `Prototype v0.2.0`.
 
 ## Core gameplay loop
 
@@ -35,8 +35,8 @@ mine-inc-build-week/
 |-- LICENSE                    # MIT License
 |-- README.md                  # Project introduction and repository guide
 |-- docs/                      # Concept, scope, testing, and collaboration notes
-|-- game/                      # Reserved for the future Godot project
-`-- media/                     # Reserved for project media
+|-- game/                      # Godot project, scenes, and typed GDScript
+`-- media/                     # Project screenshots and media
 ```
 
 ## Open and run
@@ -45,13 +45,16 @@ mine-inc-build-week/
 2. In the Godot Project Manager, select **Import**.
 3. Choose `game/project.godot` from this repository.
 4. Open the imported project.
-5. Press **F6** is not required; press **F5** or select **Run Project** to launch the configured main scene.
+5. Press **F5** or select **Run Project** to launch the configured main scene.
 
 ## Controls
 
 - Hold the right mouse button and move the mouse to orbit around the escape pod.
 - Use the mouse wheel to zoom in and out.
 - Press `R` to reset the camera to its default position.
+- Left-click the asteroid to select it; click empty world space to clear the selection.
+- Press `Space` once to fire one mining-laser shot at the selected asteroid.
+- Select **Reset Prototype** in the HUD to restart the asteroid fly-by at full health.
 
 ## Currently implemented
 
@@ -60,16 +63,19 @@ mine-inc-build-week/
 - Dark space presentation with built-in lighting and depth markers
 - Bounded orbit and zoom camera focused on the escape pod
 - Camera reset action
-- Minimal prototype and control HUD
+- One predictable asteroid fly-by on an authored path
+- Emissive dotted trajectory generated once from the flight path
+- Left-click asteroid selection with visible selection feedback
+- Discrete mining-laser shots, asteroid health, and HUD health updates
+- One-shot asteroid destruction effect with no resource drops
+- Repeatable Reset Prototype action
+- Milestone 2 prototype status and control HUD
 
 ## Explicitly deferred
 
-- Asteroids, movement, and trajectories
-- Targeting and mining
 - Resource drops and click-to-collect interaction
 - Manufacturing the Storage Module
 - Module placement on the escape pod grid
-- Reset Prototype action
 - Save/load, which is out of scope for Build Week
 - Collector drone stretch goal
 - All wider-game systems excluded by the Build Week scope

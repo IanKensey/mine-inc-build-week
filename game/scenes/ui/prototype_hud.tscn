@@ -1,7 +1,9 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/prototype_hud.gd" id="1_hud"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
-bg_color = Color(0.02, 0.035, 0.055, 0.88)
+bg_color = Color(0.02, 0.035, 0.055, 0.9)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -13,12 +15,13 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="PrototypeHUD" type="CanvasLayer"]
+script = ExtResource("1_hud")
 
 [node name="InfoPanel" type="PanelContainer" parent="."]
 offset_left = 24.0
 offset_top = 24.0
-offset_right = 312.0
-offset_bottom = 212.0
+offset_right = 352.0
+offset_bottom = 348.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
 [node name="Margin" type="MarginContainer" parent="InfoPanel"]
@@ -28,7 +31,7 @@ theme_override_constants/margin_right = 18
 theme_override_constants/margin_bottom = 14
 
 [node name="Content" type="VBoxContainer" parent="InfoPanel/Margin"]
-theme_override_constants/separation = 7
+theme_override_constants/separation = 6
 
 [node name="Title" type="Label" parent="InfoPanel/Margin/Content"]
 theme_override_colors/font_color = Color(1, 0.66, 0.22, 1)
@@ -38,7 +41,7 @@ text = "Mine Inc."
 [node name="Version" type="Label" parent="InfoPanel/Margin/Content"]
 theme_override_colors/font_color = Color(0.72, 0.86, 0.92, 1)
 theme_override_font_sizes/font_size = 16
-text = "Prototype v0.1.0"
+text = "Prototype v0.2.0"
 
 [node name="Event" type="Label" parent="InfoPanel/Margin/Content"]
 theme_override_colors/font_color = Color(0.72, 0.86, 0.92, 1)
@@ -47,7 +50,23 @@ text = "OpenAI Build Week 2026"
 
 [node name="Separator" type="HSeparator" parent="InfoPanel/Margin/Content"]
 
+[node name="TargetStatus" type="Label" parent="InfoPanel/Margin/Content"]
+theme_override_colors/font_color = Color(1, 0.76, 0.32, 1)
+theme_override_font_sizes/font_size = 16
+text = "Asteroid in flight — not selected"
+
+[node name="Health" type="Label" parent="InfoPanel/Margin/Content"]
+theme_override_colors/font_color = Color(0.9, 0.92, 0.94, 1)
+theme_override_font_sizes/font_size = 16
+text = "HP: —"
+
 [node name="Controls" type="Label" parent="InfoPanel/Margin/Content"]
 theme_override_colors/font_color = Color(0.9, 0.92, 0.94, 1)
-theme_override_font_sizes/font_size = 15
-text = "Right-drag to orbit\nMouse wheel to zoom\nR to reset camera"
+theme_override_font_sizes/font_size = 14
+text = "Left-click asteroid to select\nSpace to fire mining laser\nRight-drag to orbit\nMouse wheel to zoom · R to reset camera"
+
+[node name="ResetButton" type="Button" parent="InfoPanel/Margin/Content"]
+custom_minimum_size = Vector2(0, 34)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "Reset Prototype"

@@ -1,0 +1,116 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://scripts/space/asteroid.gd" id="1_asteroid"]
+
+[sub_resource type="StandardMaterial3D" id="Material_rock"]
+albedo_color = Color(0.25, 0.22, 0.19, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="Material_rock_dark"]
+albedo_color = Color(0.12, 0.105, 0.09, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="Material_selection"]
+shading_mode = 0
+albedo_color = Color(1, 0.64, 0.12, 1)
+emission_enabled = true
+emission = Color(1, 0.36, 0.04, 1)
+emission_energy_multiplier = 2.4
+
+[sub_resource type="SphereMesh" id="Sphere_core"]
+material = SubResource("Material_rock")
+radius = 1.05
+height = 2.1
+radial_segments = 9
+rings = 5
+
+[sub_resource type="SphereMesh" id="Sphere_lobe_a"]
+material = SubResource("Material_rock_dark")
+radius = 0.7
+height = 1.4
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="Sphere_lobe_b"]
+material = SubResource("Material_rock")
+radius = 0.55
+height = 1.1
+radial_segments = 7
+rings = 4
+
+[sub_resource type="TorusMesh" id="Torus_selection"]
+material = SubResource("Material_selection")
+inner_radius = 1.45
+outer_radius = 1.53
+rings = 32
+ring_segments = 8
+
+[sub_resource type="SphereShape3D" id="Sphere_collision"]
+radius = 1.45
+
+[sub_resource type="ParticleProcessMaterial" id="Particles_destruction"]
+emission_shape = 1
+emission_sphere_radius = 0.85
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 2.8
+initial_velocity_max = 5.2
+gravity = Vector3(0, 0, 0)
+scale_min = 0.65
+scale_max = 1.35
+color = Color(1, 0.46, 0.12, 1)
+
+[sub_resource type="SphereMesh" id="Sphere_particle"]
+material = SubResource("Material_selection")
+radius = 0.14
+height = 0.28
+radial_segments = 6
+rings = 3
+
+[node name="Asteroid" type="Area3D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_asteroid")
+maximum_health = 5
+movement_speed = 1.8
+
+[node name="VisualRoot" type="Node3D" parent="."]
+rotation = Vector3(0.32, -0.45, 0.18)
+
+[node name="Core" type="MeshInstance3D" parent="VisualRoot"]
+scale = Vector3(1.15, 0.82, 0.96)
+mesh = SubResource("Sphere_core")
+
+[node name="LobeA" type="MeshInstance3D" parent="VisualRoot"]
+position = Vector3(0.72, 0.32, -0.18)
+rotation = Vector3(0.4, 0.2, -0.3)
+scale = Vector3(1.05, 0.72, 0.88)
+mesh = SubResource("Sphere_lobe_a")
+
+[node name="LobeB" type="MeshInstance3D" parent="VisualRoot"]
+position = Vector3(-0.7, -0.3, 0.3)
+rotation = Vector3(-0.25, 0.5, 0.2)
+scale = Vector3(0.82, 1.1, 0.7)
+mesh = SubResource("Sphere_lobe_b")
+
+[node name="SelectionIndicator" type="MeshInstance3D" parent="."]
+visible = false
+rotation = Vector3(1.5708, 0, 0)
+mesh = SubResource("Torus_selection")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("Sphere_collision")
+
+[node name="DestructionEffect" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 44
+lifetime = 1.05
+one_shot = true
+explosiveness = 0.95
+visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
+process_material = SubResource("Particles_destruction")
+draw_pass_1 = SubResource("Sphere_particle")
+
+[node name="DestructionTimer" type="Timer" parent="."]
+wait_time = 1.1
+one_shot = true

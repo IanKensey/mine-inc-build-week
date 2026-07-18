@@ -14,7 +14,7 @@ Use this checklist when the relevant feature exists. Record defects and retest a
 - [ ] Confirm cool key lighting and warm rim lighting make the pod silhouette readable.
 - [ ] Confirm distant light markers provide visible depth cues while orbiting.
 - [ ] Confirm the HUD displays `Mine Inc.`.
-- [ ] Confirm the HUD displays `Prototype v0.1.0`.
+- [ ] Confirm the HUD displays the current version, `Prototype v0.2.0`.
 - [ ] Confirm the HUD displays `OpenAI Build Week 2026`.
 - [ ] Confirm the HUD lists the orbit, zoom, and reset controls.
 - [ ] Confirm no unexpected errors appear in the Godot debugger during launch.
@@ -32,20 +32,94 @@ Use this checklist when the relevant feature exists. Record defects and retest a
 - [ ] Press `R` and confirm the original yaw, pitch, and distance are restored.
 - [ ] Repeat orbit, zoom, and reset actions and confirm no debugger errors occur.
 
-## Future milestone - Asteroid movement and trajectory (not yet implemented)
+## Milestone 2 - Asteroid and fly-by
 
-- [ ] The asteroid follows its intended path.
-- [ ] The trajectory is visible and readable against the scene.
-- [ ] The trajectory corresponds to the asteroid's movement.
-- [ ] Movement remains stable across different frame rates.
+- [ ] Confirm one recognizably irregular asteroid appears outside the initial central view.
+- [ ] Confirm the asteroid uses only built-in geometry and materials.
+- [ ] Confirm the asteroid follows the authored path at a predictable pace.
+- [ ] Time an uninterrupted fly-by and confirm it lasts approximately 25–30 seconds.
+- [ ] Confirm the asteroid passes clearly within visible operating range of the pod.
+- [ ] Confirm it remains far enough from the escape pod to avoid a collision.
+- [ ] Confirm it leaves the play area and stops cleanly at the path end.
+- [ ] Confirm the HUD reports `Fly-by complete` at the path end.
+- [ ] Confirm movement remains stable at different frame rates.
 
-## Future milestone - Targeting and mining (not yet implemented)
+## Milestone 2 - Visible trajectory
 
-- [ ] The asteroid can be selected with the documented input.
-- [ ] Selection provides clear visual feedback.
-- [ ] Firing affects only a valid selected target.
-- [ ] Mining damage is applied consistently until the asteroid is destroyed.
-- [ ] Destroying the asteroid removes or disables it cleanly.
+- [ ] Confirm the trajectory appears as readable emissive dotted markers.
+- [ ] Confirm the dots represent the asteroid's actual authored path accurately.
+- [ ] Confirm the trajectory remains readable against the dark background from useful camera angles.
+- [ ] Confirm only one trajectory is present at startup.
+- [ ] Reset repeatedly and confirm trajectory dots are not duplicated.
+
+## Milestone 2 - Target selection and HUD
+
+- [ ] Left-click the asteroid and confirm it becomes selected.
+- [ ] Confirm the selected state has obvious visual feedback.
+- [ ] Confirm the HUD displays `Asteroid selected`.
+- [ ] Confirm the HUD displays integer health as `HP: 5 / 5` initially.
+- [ ] Click empty world space and confirm selection clears.
+- [ ] Click the HUD panel and controls and confirm world selection does not change.
+- [ ] Right-drag the camera and confirm it does not select or clear the asteroid.
+- [ ] Confirm the asteroid cannot be selected after destruction or path completion.
+
+## Milestone 2 - Mining and health
+
+- [ ] Press `Space` without a selected asteroid and confirm nothing is damaged.
+- [ ] Select the asteroid and press `Space` once.
+- [ ] Confirm a brief visible beam originates from the escape pod and reaches the asteroid.
+- [ ] Confirm one press removes exactly one HP.
+- [ ] Confirm the HUD immediately updates to `HP: 4 / 5` after the first hit.
+- [ ] Hold `Space` and confirm key-repeat does not produce unintended rapid fire.
+- [ ] Confirm five deliberate shots are required to destroy a full-health asteroid.
+- [ ] Confirm further Space presses cannot damage a destroyed asteroid.
+
+## Milestone 2 - Destruction
+
+- [ ] Confirm reaching zero HP emits one visible destruction event.
+- [ ] Confirm asteroid geometry and selection feedback disappear cleanly.
+- [ ] Confirm a brief built-in particle burst is visible.
+- [ ] Confirm the burst ends cleanly without persistent debris.
+- [ ] Confirm the HUD displays `Asteroid destroyed` and `HP: 0 / 5`.
+- [ ] Confirm no resource objects, inventory, or collection behaviour appears.
+- [ ] Confirm destruction occurs exactly once even with repeated input.
+
+## Milestone 2 - Reset Prototype
+
+- [ ] Select **Reset Prototype** during an active fly-by.
+- [ ] Confirm the asteroid returns to the exact path start at full health.
+- [ ] Confirm selection is cleared and the HUD returns to active fly-by state.
+- [ ] Destroy the asteroid, then reset and confirm its visuals, collision, health, and movement are restored.
+- [ ] Let the fly-by complete, then reset and confirm it restarts normally.
+- [ ] Reset during the destruction effect and confirm the effect clears immediately.
+- [ ] Reset repeatedly and confirm no duplicated asteroid, signals, effects, beams, or trajectory dots.
+
+## Milestone 2 - Milestone 1 regression
+
+- [ ] Confirm the project still launches directly without errors.
+- [ ] Confirm the escape pod, lighting, depth cues, and HUD remain readable.
+- [ ] Confirm right-drag orbit, bounded pitch, and bounded wheel zoom still work.
+- [ ] Confirm `R` still restores the default camera view.
+- [ ] Confirm the project exits and relaunches cleanly.
+- [ ] Confirm no unexpected debugger errors occur during the full Milestone 2 loop.
+
+## Milestone 2 - Focused defect regression
+
+- [ ] Click **Reset Prototype** and confirm the fly-by restarts normally.
+- [ ] Select the reset asteroid and confirm the HUD displays `HP: 5 / 5`.
+- [ ] Press `Space` once and confirm Reset Prototype is not activated.
+- [ ] Confirm the asteroid remains at its current fly-by position rather than jumping to the path start.
+- [ ] Confirm exactly one mining beam appears and the HUD changes to `HP: 4 / 5`.
+- [ ] Press `Space` three more deliberate times and confirm HP changes to `3 / 5`, `2 / 5`, then `1 / 5`.
+- [ ] Confirm the asteroid remains visible and targetable after the fourth total hit.
+- [ ] Press `Space` a fifth time and confirm HP reaches `0 / 5` and destruction occurs exactly once.
+- [ ] Confirm one clearly visible particle burst appears at the asteroid's destruction position.
+- [ ] Confirm the burst remains perceptible at normal camera distance and clears after approximately one second.
+- [ ] Confirm the burst does not create debris or resources.
+- [ ] Click **Reset Prototype** after destruction and confirm the asteroid, health, collision, and fly-by are restored cleanly.
+- [ ] Repeat the focused sequence and confirm no duplicated damage, resets, effects, or signals.
+- [ ] Confirm the uninterrupted fly-by still lasts approximately 27–28 seconds.
+- [ ] Confirm camera, selection, trajectory, HUD, reset, fly-by completion, exit, and relaunch behaviour remain unchanged.
 
 ## Future milestone - Resource collection (not yet implemented)
 
