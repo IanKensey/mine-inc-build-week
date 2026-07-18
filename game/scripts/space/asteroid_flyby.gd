@@ -38,6 +38,23 @@ func stop_flyby() -> void:
 	is_running = false
 
 
+func get_travel_direction() -> Vector3:
+	var path: Path3D = get_parent() as Path3D
+	var path_length: float = path.curve.get_baked_length()
+	var sample_offset: float = 0.25
+	var from_distance: float = maxf(progress - sample_offset, 0.0)
+	var to_distance: float = minf(progress + sample_offset, path_length)
+	var local_direction: Vector3 = (
+		path.curve.sample_baked(to_distance, true)
+		- path.curve.sample_baked(from_distance, true)
+	).normalized()
+
+	if local_direction.is_zero_approx():
+		return Vector3.RIGHT
+
+	return (path.global_basis * local_direction).normalized()
+
+
 func _complete_flyby() -> void:
 	if _completion_emitted:
 		return

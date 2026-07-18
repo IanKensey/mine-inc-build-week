@@ -12,7 +12,7 @@ The prototype environment is:
 - Typed GDScript
 - Windows 11
 
-The current documented prototype version is `0.2.0-buildweek`, stored in the root `VERSION` file. The HUD presents this as `Prototype v0.2.0`.
+The current documented prototype version is `0.3.0-buildweek`, stored in the root `VERSION` file. The HUD presents this as `Prototype v0.3.0`.
 
 ## Core gameplay loop
 
@@ -54,6 +54,7 @@ mine-inc-build-week/
 - Press `R` to reset the camera to its default position.
 - Left-click the asteroid to select it; click empty world space to clear the selection.
 - Press `Space` once to fire one mining-laser shot at the selected asteroid.
+- Left-click a Rock pickup to collect it immediately.
 - Select **Reset Prototype** in the HUD to restart the asteroid fly-by at full health.
 
 ## Currently implemented
@@ -67,13 +68,15 @@ mine-inc-build-week/
 - Emissive dotted trajectory generated once from the flight path
 - Left-click asteroid selection with visible selection feedback
 - Discrete mining-laser shots, asteroid health, and HUD health updates
-- One-shot asteroid destruction effect with no resource drops
+- One-shot asteroid destruction effect
+- Three predictable drifting Rock pickups released on asteroid destruction
+- Immediate left-click Rock collection and scene-local Rock inventory count
+- Fourteen-second pickup lifetime with clean silent expiration
 - Repeatable Reset Prototype action
-- Milestone 2 prototype status and control HUD
+- Milestone 3 prototype status, inventory, and control HUD
 
 ## Explicitly deferred
 
-- Resource drops and click-to-collect interaction
 - Manufacturing the Storage Module
 - Module placement on the escape pod grid
 - Save/load, which is out of scope for Build Week

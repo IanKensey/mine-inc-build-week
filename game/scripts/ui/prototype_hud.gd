@@ -5,6 +5,7 @@ signal reset_requested
 
 @onready var _target_status: Label = $InfoPanel/Margin/Content/TargetStatus
 @onready var _health: Label = $InfoPanel/Margin/Content/Health
+@onready var _rock_count: Label = $InfoPanel/Margin/Content/RockCount
 @onready var _reset_button: Button = $InfoPanel/Margin/Content/ResetButton
 
 
@@ -30,6 +31,10 @@ func show_destroyed(maximum_health: int) -> void:
 func show_flyby_complete() -> void:
 	_target_status.text = "Fly-by complete"
 	_health.text = "HP: —"
+
+
+func set_rock_count(quantity: int) -> void:
+	_rock_count.text = "Rock: %d" % quantity
 
 
 func _on_reset_button_pressed() -> void:

@@ -14,7 +14,7 @@ Use this checklist when the relevant feature exists. Record defects and retest a
 - [ ] Confirm cool key lighting and warm rim lighting make the pod silhouette readable.
 - [ ] Confirm distant light markers provide visible depth cues while orbiting.
 - [ ] Confirm the HUD displays `Mine Inc.`.
-- [ ] Confirm the HUD displays the current version, `Prototype v0.2.0`.
+- [ ] Confirm the HUD displays the current version, `Prototype v0.3.0`.
 - [ ] Confirm the HUD displays `OpenAI Build Week 2026`.
 - [ ] Confirm the HUD lists the orbit, zoom, and reset controls.
 - [ ] Confirm no unexpected errors appear in the Godot debugger during launch.
@@ -81,7 +81,7 @@ Use this checklist when the relevant feature exists. Record defects and retest a
 - [ ] Confirm a brief built-in particle burst is visible.
 - [ ] Confirm the burst ends cleanly without persistent debris.
 - [ ] Confirm the HUD displays `Asteroid destroyed` and `HP: 0 / 5`.
-- [ ] Confirm no resource objects, inventory, or collection behaviour appears.
+- [ ] Confirm destruction itself still occurs exactly once before Milestone 3 resource release is handled.
 - [ ] Confirm destruction occurs exactly once even with repeated input.
 
 ## Milestone 2 - Reset Prototype
@@ -121,13 +121,95 @@ Use this checklist when the relevant feature exists. Record defects and retest a
 - [ ] Confirm the uninterrupted fly-by still lasts approximately 27–28 seconds.
 - [ ] Confirm camera, selection, trajectory, HUD, reset, fly-by completion, exit, and relaunch behaviour remain unchanged.
 
-## Future milestone - Resource collection (not yet implemented)
+## Milestone 3 - Resource release
 
-- [ ] Destroying the asteroid releases the expected resources.
-- [ ] Released resources are visible and distinguishable.
-- [ ] Resources can be collected through the intended click interaction.
-- [ ] The stored resource amount updates exactly once per collected resource.
-- [ ] Collected resource objects are removed cleanly.
+- [ ] Launch or reset the prototype and confirm the HUD displays `Rock: 0`.
+- [ ] Allow a fly-by to complete without destruction and confirm no Rock pickups are released.
+- [ ] Destroy the asteroid and confirm exactly three Rock pickups appear.
+- [ ] Confirm all three spawn around the destruction position with visible initial separation.
+- [ ] Confirm their collision areas do not completely overlap.
+- [ ] Confirm all pickups use built-in geometry and remain readable against the background.
+- [ ] Confirm the pickups drift broadly in the asteroid's travel direction.
+- [ ] Confirm the three fixed drift variations are predictable across repeated resets.
+- [ ] Confirm repeated Space presses after destruction do not release another group.
+- [ ] Confirm each destroyed asteroid run represents exactly six collectible Rock.
+
+## Milestone 3 - Manual collection and collision routing
+
+- [ ] Left-click one Rock pickup and confirm it is collected immediately without another input.
+- [ ] Confirm only the clicked pickup disappears.
+- [ ] Confirm the other two pickups remain collectible.
+- [ ] Confirm the HUD immediately changes from `Rock: 0` to `Rock: 2`.
+- [ ] Click the former pickup position again and confirm Rock does not increase twice.
+- [ ] Collect the second pickup and confirm `Rock: 4`.
+- [ ] Collect the third pickup and confirm `Rock: 6`.
+- [ ] Confirm Rock cannot exceed six during one fly-by.
+- [ ] Confirm clicking a Rock pickup does not select it as an asteroid or alter stale asteroid selection unexpectedly.
+- [ ] Confirm asteroid selection still uses physics layer 2 and works normally before destruction.
+- [ ] Confirm Rock collection uses physics layer 3 with mask value `4`.
+- [ ] Confirm HUD clicks do not select the asteroid or collect Rock behind the HUD.
+- [ ] Confirm right-mouse camera orbit does not collect Rock.
+
+## Milestone 3 - Drift and expiration
+
+- [ ] Destroy the asteroid and leave all pickups uncollected.
+- [ ] Confirm pickups move continuously and remain clickable while drifting.
+- [ ] Confirm they disappear cleanly after approximately 14 seconds.
+- [ ] Confirm expiration does not increase the Rock count.
+- [ ] Collect one pickup and allow two to expire; confirm the final count remains `Rock: 2`.
+- [ ] Confirm expiration produces no debugger errors or persistent collision targets.
+
+## Milestone 3 - Reset and same-frame safeguards
+
+- [ ] Reset while all three pickups are drifting and confirm all are removed.
+- [ ] Confirm Reset Prototype restores `Rock: 0`.
+- [ ] Collect one pickup, reset immediately, and confirm the final count is `Rock: 0`.
+- [ ] Reset close to pickup expiration and confirm no Rock is added and no error occurs.
+- [ ] Reset after collecting some pickups while others remain and confirm all state clears.
+- [ ] Confirm reset restores the asteroid, full HP, selection state, fly-by, and one trajectory only.
+- [ ] Repeat destruction and reset cycles and confirm no duplicate signals, pickups, inventory additions, or trajectory dots.
+
+## Milestone 3 - Milestone 1 and 2 regression
+
+- [ ] Confirm the uninterrupted asteroid fly-by still lasts approximately 27–28 seconds.
+- [ ] Confirm asteroid selection, empty-space deselection, HP, mining beam, and five-hit destruction remain correct.
+- [ ] Confirm the destruction burst remains clearly visible.
+- [ ] Confirm camera orbit, bounded pitch, bounded zoom, and `R` reset remain correct.
+- [ ] Confirm fly-by completion, Reset Prototype, exit, and relaunch remain correct.
+- [ ] Confirm no unexpected debugger errors occur during the complete Milestone 3 loop.
+
+## Milestone 3 - Pickup fade polish
+
+- [ ] Destroy the asteroid and leave all three Rock pickups uncollected.
+- [ ] Confirm the pickups remain fully visible for approximately 11 seconds.
+- [ ] Confirm each pickup begins fading smoothly over its final approximately three seconds.
+- [ ] Confirm the Rock core, Rock lobe, and blue halo fade together.
+- [ ] Confirm the halo retains its existing size and brightness before the fade begins.
+- [ ] Confirm pickups continue drifting normally throughout the fade.
+- [ ] Confirm fading one pickup does not change the opacity of another pickup.
+- [ ] Click a partially faded pickup and confirm it is collected immediately.
+- [ ] Confirm collection during the fade adds exactly two Rock and cannot occur twice.
+- [ ] Confirm an uncollected pickup is removed at approximately 14 seconds.
+- [ ] Confirm expiration adds no Rock and produces no debugger error.
+- [ ] Reset while pickups are fading and confirm they disappear immediately.
+- [ ] Confirm reset during fading restores `Rock: 0` and produces no delayed collection or expiration effects.
+- [ ] Repeat the fade, collection, expiration, and reset cases and confirm no duplicated signals or inventory changes.
+
+## Milestone 3 - Compatibility fade correction
+
+- [ ] Run the prototype with the Compatibility renderer unchanged.
+- [ ] Destroy the asteroid and confirm all three Rock pickups begin fully opaque.
+- [ ] Confirm no pickup changes opacity during approximately its first 11 seconds.
+- [ ] Confirm Rock geometry visibly fades over the final approximately three seconds.
+- [ ] Confirm the emissive blue halo visibly fades with the Rock geometry.
+- [ ] Confirm each pickup's fade is independent and does not alter either other pickup.
+- [ ] Confirm shared source material colours remain correct after reset and another destruction cycle.
+- [ ] Click a partially faded pickup and confirm it remains collectible exactly once.
+- [ ] Confirm collection during fading immediately adds two Rock and removes only that pickup.
+- [ ] Reset while one or more pickups are fading and confirm immediate safe cleanup with `Rock: 0`.
+- [ ] Confirm uncollected fading pickups still expire at approximately 14 seconds without adding Rock.
+- [ ] Confirm drift direction, speed, collision, yield, inventory, HUD, asteroid, camera, and reset behaviour remain unchanged.
+- [ ] Confirm no unexpected debugger warnings or errors occur during repeated fade cycles.
 
 ## Future milestone - Manufacturing (not yet implemented)
 

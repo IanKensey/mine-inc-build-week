@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=17 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/pod/escape_pod.tscn" id="1_pod"]
 [ext_resource type="Script" path="res://scripts/camera/orbit_camera.gd" id="2_camera"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/space/trajectory_renderer.gd" id="5_trajectory"]
 [ext_resource type="Script" path="res://scripts/space/asteroid_flyby.gd" id="6_flyby"]
 [ext_resource type="PackedScene" path="res://scenes/space/asteroid.tscn" id="7_asteroid"]
+[ext_resource type="PackedScene" path="res://scenes/resources/rock_pickup.tscn" id="8_rock"]
 
 [sub_resource type="Environment" id="Environment_space"]
 background_mode = 1
@@ -64,6 +65,12 @@ emission_energy_multiplier = 3.5
 script = ExtResource("4_controller")
 mining_damage = 1
 asteroid_collision_mask = 2
+rock_pickup_collision_mask = 4
+rock_pickup_scene = ExtResource("8_rock")
+rock_pickup_count = 3
+rock_quantity_per_pickup = 2
+rock_pickup_lifetime = 14.0
+rock_base_drift_speed = 0.75
 
 [node name="SpaceEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_space")
@@ -138,6 +145,8 @@ loop = false
 script = ExtResource("6_flyby")
 
 [node name="Asteroid" parent="AsteroidPath/AsteroidFlyby" instance=ExtResource("7_asteroid")]
+
+[node name="ResourcePickups" type="Node3D" parent="."]
 
 [node name="MiningBeam" type="MeshInstance3D" parent="."]
 visible = false
