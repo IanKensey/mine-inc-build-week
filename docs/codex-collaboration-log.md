@@ -363,6 +363,71 @@
 - Confirm Reset Prototype immediately removes fading pickups without errors or inventory changes.
 - Confirm all previously passing Milestone 1, 2, and 3 behaviour remains unchanged.
 
+## 2026-07-18 - Milestone 4 implementation
+
+### Codex contributions
+
+- Added one scene-local manufacturing flow for the Storage Module.
+- Added an authoritative three-second `ManufacturingTimer` to the main scene.
+- Added a compact always-visible upper-right Manufacturing panel with cost, status, progress, and action controls.
+- Added controller-side request validation, immediate four-Rock spending, timer-derived progress, completion, pending-module state, and reset cancellation.
+- Kept affordability derived from the current Rock count rather than storing it as manufacturing state.
+- Added button focus protection so Space mining input cannot activate manufacturing after a mouse click.
+- Updated version, README, collaboration record, and focused manual tests.
+
+### Human decisions
+
+- Approved a Storage Module cost of four Rock and manufacturing duration of three seconds.
+- Limited manufacturing to one pending module.
+- Approved an always-visible upper-right HUD panel and immediate Rock spending.
+- Allowed remaining Rock pickups to be collected during manufacturing.
+- Required completed-module representation to remain HUD state only.
+- Required the minimal controller-local states `IDLE`, `MANUFACTURING`, and `MODULE_PENDING`.
+- Prohibited module geometry, world construction, placement, crafting abstractions, and Milestone 5 behaviour.
+- Approved prototype version `0.4.0-buildweek` and HUD version `Prototype v0.4.0`.
+
+### Files modified
+
+- `VERSION`
+- `game/scripts/main/prototype_controller.gd`
+- `game/scripts/ui/prototype_hud.gd`
+- `game/scenes/main/prototype.tscn`
+- `game/scenes/ui/prototype_hud.tscn`
+- `README.md`
+- `docs/codex-collaboration-log.md`
+- `docs/test-checklist.md`
+
+### State and affordability model
+
+- `IDLE`: affordability is derived from `_rock_count >= storage_module_rock_cost`.
+- `MANUFACTURING`: exactly four Rock have been spent and the timer is active.
+- `MODULE_PENDING`: exactly one Storage Module is complete and awaiting the separate placement milestone.
+- The controller revalidates state and Rock count for every request; the HUD button state is presentation only.
+
+### Implementation trade-offs
+
+- Manufacturing remains in `prototype_controller.gd` because there is one recipe, one item, and one pending state.
+- The progress bar derives directly from `ManufacturingTimer.time_left` and `wait_time`, avoiding a second production clock.
+- The timer's `wait_time` is set from the exported duration immediately before starting, keeping tuning and progress synchronized.
+- The completed module is represented only by `MODULE_PENDING` and HUD text, avoiding premature placement or world geometry.
+- Remaining Rock collection continues normally during manufacturing but cannot start a second timer.
+
+### Automated verification
+
+- Godot Engine v4.6.2.stable.official [71f334935] parsed the updated typed scripts and scenes.
+- The configured main scene launched headlessly with exit code 0 and reported Milestone 4 readiness.
+- Static inspection confirmed one timer, a four-Rock cost, three-second duration, three controller-local states, request revalidation, timeout-state validation, and `FOCUS_NONE` on the manufacturing button.
+
+### Manual verification still required
+
+- Confirm affordability updates at zero, two, four, and six Rock.
+- Confirm manufacturing spends exactly four Rock once and progresses visibly over approximately three seconds.
+- Confirm rapid requests cannot duplicate spending, timers, or pending modules.
+- Confirm remaining Rock can be collected during manufacturing.
+- Confirm completion displays both `Storage Module complete` and `Pending placement`.
+- Confirm reset from every manufacturing state stops progress, clears pending state, and restores Rock to zero.
+- Confirm all Milestone 1–3 behaviour remains unchanged and no debugger errors occur.
+
 ## 2026-07-18 - Compatibility-renderer pickup fade correction
 
 ### Human test finding
@@ -407,3 +472,23 @@
 - Confirm reset immediately removes fading pickups without inventory changes or errors.
 - Confirm expiration still occurs at approximately 14 seconds and adds no Rock.
 - Confirm all previously passing Milestone 1, 2, and 3 behaviour remains unchanged.
+
+### Human verification — Milestone 4
+
+- The milestone 4 prototype displays version `0.4.0`.
+- The Manufacturing panel is readable and does not obscure the existing HUD.
+- At zero Rock, the panel reports that four more Rock are required and the button is disabled.
+- When one pickup updates the requirement to two more Rock.
+- Collecting a second pickup enables manufacturing immediately.
+- Starting manufacturing spends exactly four Rock once.
+- Manufacturing progress advances visibly over approximately three seconds.
+- Repeated clicks do not spend additional Rock or restart the timer.
+- Rock pickups remain collectible while manufacturing is in progress.
+- Completion creates exactly one pending Storage Module.
+- The pending module prevents further manufacturing.
+- Pressing `Space` after using the manufacturing button does not activate it or interfere with mining.
+- Reset was tested while unavailable, affordable, manufacturing, immediately before completion, and after completion.
+- Every reset returned Rock to zero, cleared progress, cleared the pending module, and prevented late completion.
+- The complete mining, collection, and manufacturing loop was repeated successfully.
+- Camera, trajectory, targeting, five-hit destruction, particles, Rock drift, fade, collection, expiration, reset, and normal fly-by completion remain functional.
+- No unexpected Godot debugger errors were observed.

@@ -41,7 +41,7 @@ text = "Mine Inc."
 [node name="Version" type="Label" parent="InfoPanel/Margin/Content"]
 theme_override_colors/font_color = Color(0.72, 0.86, 0.92, 1)
 theme_override_font_sizes/font_size = 16
-text = "Prototype v0.3.0"
+text = "Prototype v0.4.0"
 
 [node name="Event" type="Label" parent="InfoPanel/Margin/Content"]
 theme_override_colors/font_color = Color(0.72, 0.86, 0.92, 1)
@@ -75,3 +75,56 @@ custom_minimum_size = Vector2(0, 34)
 focus_mode = 0
 mouse_default_cursor_shape = 2
 text = "Reset Prototype"
+
+[node name="ManufacturingPanel" type="PanelContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -344.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = 270.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Margin" type="MarginContainer" parent="ManufacturingPanel"]
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 14
+
+[node name="Content" type="VBoxContainer" parent="ManufacturingPanel/Margin"]
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="ManufacturingPanel/Margin/Content"]
+theme_override_colors/font_color = Color(1, 0.66, 0.22, 1)
+theme_override_font_sizes/font_size = 21
+text = "Manufacturing"
+
+[node name="ModuleName" type="Label" parent="ManufacturingPanel/Margin/Content"]
+theme_override_colors/font_color = Color(0.82, 0.9, 0.94, 1)
+theme_override_font_sizes/font_size = 17
+text = "Storage Module"
+
+[node name="Cost" type="Label" parent="ManufacturingPanel/Margin/Content"]
+theme_override_colors/font_color = Color(0.26, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "Cost: 4 Rock"
+
+[node name="Status" type="Label" parent="ManufacturingPanel/Margin/Content"]
+custom_minimum_size = Vector2(0, 38)
+theme_override_colors/font_color = Color(0.9, 0.92, 0.94, 1)
+theme_override_font_sizes/font_size = 15
+text = "Need 4 more Rock"
+
+[node name="Progress" type="ProgressBar" parent="ManufacturingPanel/Margin/Content"]
+custom_minimum_size = Vector2(0, 24)
+value = 0.0
+show_percentage = true
+
+[node name="ManufactureButton" type="Button" parent="ManufacturingPanel/Margin/Content"]
+custom_minimum_size = Vector2(0, 36)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+disabled = true
+text = "Manufacture Storage Module"

@@ -12,7 +12,7 @@ The prototype environment is:
 - Typed GDScript
 - Windows 11
 
-The current documented prototype version is `0.3.0-buildweek`, stored in the root `VERSION` file. The HUD presents this as `Prototype v0.3.0`.
+The current documented prototype version is `0.4.0-buildweek`, stored in the root `VERSION` file. The HUD presents this as `Prototype v0.4.0`.
 
 ## Core gameplay loop
 
@@ -55,6 +55,7 @@ mine-inc-build-week/
 - Left-click the asteroid to select it; click empty world space to clear the selection.
 - Press `Space` once to fire one mining-laser shot at the selected asteroid.
 - Left-click a Rock pickup to collect it immediately.
+- Select **Manufacture Storage Module** after collecting at least four Rock.
 - Select **Reset Prototype** in the HUD to restart the asteroid fly-by at full health.
 
 ## Currently implemented
@@ -72,12 +73,14 @@ mine-inc-build-week/
 - Three predictable drifting Rock pickups released on asteroid destruction
 - Immediate left-click Rock collection and scene-local Rock inventory count
 - Fourteen-second pickup lifetime with clean silent expiration
+- One fixed Storage Module recipe costing four Rock
+- Three-second manufacturing process with visible progress
+- One completed Storage Module held as pending placement state
 - Repeatable Reset Prototype action
-- Milestone 3 prototype status, inventory, and control HUD
+- Milestone 4 prototype status, inventory, manufacturing, and control HUD
 
 ## Explicitly deferred
 
-- Manufacturing the Storage Module
 - Module placement on the escape pod grid
 - Save/load, which is out of scope for Build Week
 - Collector drone stretch goal

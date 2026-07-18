@@ -211,6 +211,58 @@ Use this checklist when the relevant feature exists. Record defects and retest a
 - [ ] Confirm drift direction, speed, collision, yield, inventory, HUD, asteroid, camera, and reset behaviour remain unchanged.
 - [ ] Confirm no unexpected debugger warnings or errors occur during repeated fade cycles.
 
+## Milestone 4 - Manufacturing availability
+
+- [ ] Launch or reset and confirm the HUD displays `Prototype v0.4.0`.
+- [ ] Confirm the Manufacturing panel is readable in the upper-right without obscuring the existing HUD.
+- [ ] Confirm it identifies the `Storage Module` and `Cost: 4 Rock`.
+- [ ] At `Rock: 0`, confirm the status says `Need 4 more Rock` and the button is disabled.
+- [ ] Collect one pickup and confirm `Rock: 2`, `Need 2 more Rock`, and a disabled button.
+- [ ] Collect a second pickup and confirm `Rock: 4`, `Ready to manufacture`, and an enabled button.
+- [ ] Collect all three and confirm `Rock: 6` while manufacturing remains affordable.
+- [ ] Press Space after clicking the manufacturing button area and confirm it cannot activate the button through keyboard focus.
+
+## Milestone 4 - Manufacturing process
+
+- [ ] With fewer than four Rock, attempt to trigger manufacturing and confirm no Rock is spent and no timer starts.
+- [ ] With four or more Rock, click **Manufacture Storage Module** once.
+- [ ] Confirm exactly four Rock are spent immediately.
+- [ ] Confirm Rock never becomes negative.
+- [ ] Confirm the button disables immediately.
+- [ ] Confirm status displays `Manufacturing Storage Module…`.
+- [ ] Confirm progress advances visibly from 0% to 100% over approximately three seconds.
+- [ ] Click rapidly during manufacturing and confirm no additional Rock is spent and no second timer starts.
+- [ ] Collect a remaining Rock pickup during manufacturing and confirm Rock updates normally without changing production state.
+
+## Milestone 4 - Completion and pending module
+
+- [ ] Confirm timer completion displays `Storage Module complete`.
+- [ ] Confirm the same status clearly displays `Pending placement`.
+- [ ] Confirm progress remains at 100% and the button remains disabled.
+- [ ] Confirm repeated clicks cannot manufacture a second module.
+- [ ] Confirm collecting additional Rock does not enable manufacturing while a module is pending.
+- [ ] Confirm no module geometry, placement preview, grid, attachment, or world construction effect appears.
+
+## Milestone 4 - Reset and timer-race safety
+
+- [ ] Reset while manufacturing is unavailable and confirm the unavailable presentation remains correct.
+- [ ] Reset while affordable and confirm Rock becomes zero and the button disables.
+- [ ] Reset immediately after manufacturing begins and confirm the timer stops and progress clears.
+- [ ] Reset halfway through manufacturing and confirm no late completion occurs.
+- [ ] Reset immediately before expected timer completion and confirm no module becomes pending afterward.
+- [ ] Reset after completion and confirm pending-module state clears.
+- [ ] In every reset case, confirm Rock is zero, progress is 0%, state is idle, and status says `Need 4 more Rock`.
+- [ ] Repeat manufacturing and reset cycles and confirm no duplicate timeout signals, spending, or modules.
+
+## Milestone 4 - Milestone 1–3 regression
+
+- [ ] Confirm camera, trajectory, targeting, mining, five-hit destruction, and destruction particles remain correct.
+- [ ] Confirm exactly three Rock pickups still spawn, drift, fade, expire, and collect correctly.
+- [ ] Confirm Reset Prototype still clears pickups and inventory.
+- [ ] Confirm normal fly-by completion still releases no Rock.
+- [ ] Confirm exit and relaunch remain clean.
+- [ ] Confirm no unexpected debugger errors occur through the complete mining, collection, and manufacturing sequence.
+
 ## Future milestone - Manufacturing (not yet implemented)
 
 - [ ] The Storage Module recipe and resource cost are displayed clearly.

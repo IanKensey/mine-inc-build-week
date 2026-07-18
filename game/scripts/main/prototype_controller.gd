@@ -1,5 +1,11 @@
 extends Node3D
 
+enum ManufacturingState {
+	IDLE,
+	MANUFACTURING,
+	MODULE_PENDING,
+}
+
 @export_range(1, 100, 1) var mining_damage: int = 1
 @export_flags_3d_physics var asteroid_collision_mask: int = 2
 @export_flags_3d_physics var rock_pickup_collision_mask: int = 4
@@ -9,12 +15,15 @@ extends Node3D
 @export_range(1, 20, 1) var rock_quantity_per_pickup: int = 2
 @export_range(1.0, 30.0, 0.5) var rock_pickup_lifetime: float = 14.0
 @export_range(0.1, 3.0, 0.05) var rock_base_drift_speed: float = 0.75
+@export_range(1, 20, 1) var storage_module_rock_cost: int = 4
+@export_range(0.5, 10.0, 0.5) var manufacturing_duration: float = 3.0
 
 @onready var _camera: Camera3D = $CameraRig/Camera3D
 @onready var _mining_origin: Marker3D = $EscapePod/MiningOrigin
 @onready var _flyby: AsteroidFlyby = $AsteroidPath/AsteroidFlyby
 @onready var _asteroid: PrototypeAsteroid = $AsteroidPath/AsteroidFlyby/Asteroid
 @onready var _resource_pickups: Node3D = $ResourcePickups
+@onready var _manufacturing_timer: Timer = $ManufacturingTimer
 @onready var _beam: MeshInstance3D = $MiningBeam
 @onready var _beam_timer: Timer = $MiningBeamTimer
 @onready var _hud: PrototypeHUD = $PrototypeHUD
@@ -23,6 +32,7 @@ var _selected_asteroid: PrototypeAsteroid
 var _rock_count: int = 0
 var _resources_released_this_run: bool = false
 var _is_resetting: bool = false
+var _manufacturing_state: ManufacturingState = ManufacturingState.IDLE
 
 
 func _ready() -> void:
@@ -30,10 +40,24 @@ func _ready() -> void:
 	_asteroid.destroyed.connect(_on_asteroid_destroyed)
 	_flyby.flyby_completed.connect(_on_flyby_completed)
 	_beam_timer.timeout.connect(_on_beam_timer_timeout)
+	_manufacturing_timer.timeout.connect(_on_manufacturing_timer_timeout)
 	_hud.reset_requested.connect(_reset_prototype)
+	_hud.manufacture_requested.connect(_on_manufacture_requested)
 	_hud.show_flyby_active()
 	_hud.set_rock_count(_rock_count)
-	print("Milestone 3 prototype ready.")
+	_refresh_manufacturing_presentation()
+	print("Milestone 4 prototype ready.")
+
+
+func _process(_delta: float) -> void:
+	if _manufacturing_state != ManufacturingState.MANUFACTURING:
+		return
+
+	var timer_duration: float = _manufacturing_timer.wait_time
+	var progress: float = 0.0
+	if timer_duration > 0.0:
+		progress = clampf(1.0 - (_manufacturing_timer.time_left / timer_duration), 0.0, 1.0)
+	_hud.show_manufacturing_progress(progress)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -177,6 +201,8 @@ func _reset_prototype() -> void:
 		return
 
 	_is_resetting = true
+	_manufacturing_timer.stop()
+	_manufacturing_state = ManufacturingState.IDLE
 	_clear_selection()
 	_clear_rock_pickups()
 	_rock_count = 0
@@ -187,6 +213,7 @@ func _reset_prototype() -> void:
 	_beam.mesh = null
 	_flyby.reset_flyby()
 	_hud.show_flyby_active()
+	_refresh_manufacturing_presentation()
 	print("Prototype reset requested.")
 	call_deferred("_finish_reset")
 
@@ -218,7 +245,51 @@ func _on_rock_pickup_collected(quantity: int) -> void:
 
 	_rock_count += quantity
 	_hud.set_rock_count(_rock_count)
+	_refresh_manufacturing_presentation()
 	print("Collected %d Rock. Inventory: %d" % [quantity, _rock_count])
+
+
+func _on_manufacture_requested() -> void:
+	if _is_resetting or _manufacturing_state != ManufacturingState.IDLE:
+		return
+	if _rock_count < storage_module_rock_cost:
+		_refresh_manufacturing_presentation()
+		return
+
+	_manufacturing_state = ManufacturingState.MANUFACTURING
+	_rock_count -= storage_module_rock_cost
+	_hud.set_rock_count(_rock_count)
+	_manufacturing_timer.wait_time = manufacturing_duration
+	_manufacturing_timer.start()
+	_hud.show_manufacturing_progress(0.0)
+	print("Manufacturing Storage Module started. Spent %d Rock." % storage_module_rock_cost)
+
+
+func _on_manufacturing_timer_timeout() -> void:
+	if _manufacturing_state != ManufacturingState.MANUFACTURING:
+		return
+
+	_manufacturing_state = ManufacturingState.MODULE_PENDING
+	_hud.show_module_pending()
+	print("Storage Module complete and pending placement.")
+
+
+func _refresh_manufacturing_presentation() -> void:
+	match _manufacturing_state:
+		ManufacturingState.IDLE:
+			_hud.show_manufacturing_idle(_rock_count, storage_module_rock_cost)
+		ManufacturingState.MANUFACTURING:
+			var timer_duration: float = _manufacturing_timer.wait_time
+			var progress: float = 0.0
+			if timer_duration > 0.0:
+				progress = clampf(
+					1.0 - (_manufacturing_timer.time_left / timer_duration),
+					0.0,
+					1.0
+				)
+			_hud.show_manufacturing_progress(progress)
+		ManufacturingState.MODULE_PENDING:
+			_hud.show_module_pending()
 
 
 func _on_beam_timer_timeout() -> void:

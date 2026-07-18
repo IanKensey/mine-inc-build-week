@@ -71,6 +71,8 @@ rock_pickup_count = 3
 rock_quantity_per_pickup = 2
 rock_pickup_lifetime = 14.0
 rock_base_drift_speed = 0.75
+storage_module_rock_cost = 4
+manufacturing_duration = 3.0
 
 [node name="SpaceEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_space")
@@ -147,6 +149,10 @@ script = ExtResource("6_flyby")
 [node name="Asteroid" parent="AsteroidPath/AsteroidFlyby" instance=ExtResource("7_asteroid")]
 
 [node name="ResourcePickups" type="Node3D" parent="."]
+
+[node name="ManufacturingTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
 
 [node name="MiningBeam" type="MeshInstance3D" parent="."]
 visible = false
