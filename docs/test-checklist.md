@@ -2,28 +2,44 @@
 
 Use this checklist when the relevant feature exists. Record defects and retest affected groups after a change.
 
-## Project launch
+## Milestone 1 - Project launch and presentation
 
-- [ ] The project opens in the agreed Godot 4 version without import or parse errors.
-- [ ] Running the project reaches the main prototype scene without manual scene selection.
-- [ ] The initial escape pod, asteroid, trajectory, and interface appear as expected.
-- [ ] No unexpected errors are written to the Godot debugger on launch.
+- [ ] Open `game/project.godot` in Godot Engine v4.6.2.stable.official [71f334935].
+- [ ] Confirm the project imports without parse or resource-loading errors.
+- [ ] Press F5 and confirm the prototype main scene launches directly.
+- [ ] Confirm the default window is readable at 1280 by 720.
+- [ ] Confirm a recognizable escape pod is visible at launch.
+- [ ] Confirm the pod uses only built-in geometry and embedded materials.
+- [ ] Confirm the background is dark and space-like.
+- [ ] Confirm cool key lighting and warm rim lighting make the pod silhouette readable.
+- [ ] Confirm distant light markers provide visible depth cues while orbiting.
+- [ ] Confirm the HUD displays `Mine Inc.`.
+- [ ] Confirm the HUD displays `Prototype v0.1.0`.
+- [ ] Confirm the HUD displays `OpenAI Build Week 2026`.
+- [ ] Confirm the HUD lists the orbit, zoom, and reset controls.
+- [ ] Confirm no unexpected errors appear in the Godot debugger during launch.
 
-## Camera
+## Milestone 1 - Camera
 
-- [ ] Camera rotation responds to the documented input.
-- [ ] Zoom responds to the documented input.
-- [ ] Rotation and zoom remain within usable limits.
-- [ ] Camera input does not unintentionally trigger world interactions.
+- [ ] Hold the right mouse button and move the mouse horizontally to orbit around the pod.
+- [ ] Hold the right mouse button and move the mouse vertically to change camera pitch.
+- [ ] Confirm mouse movement without the right button held does not orbit the camera.
+- [ ] Confirm vertical orbit stops at the configured bounds and never flips the camera.
+- [ ] Scroll up and confirm the camera zooms toward the pod.
+- [ ] Scroll down and confirm the camera zooms away from the pod.
+- [ ] Confirm repeated scrolling cannot pass the minimum or maximum distance.
+- [ ] Orbit and zoom through several combinations and confirm the pod remains the focus.
+- [ ] Press `R` and confirm the original yaw, pitch, and distance are restored.
+- [ ] Repeat orbit, zoom, and reset actions and confirm no debugger errors occur.
 
-## Asteroid movement and trajectory
+## Future milestone - Asteroid movement and trajectory (not yet implemented)
 
 - [ ] The asteroid follows its intended path.
 - [ ] The trajectory is visible and readable against the scene.
 - [ ] The trajectory corresponds to the asteroid's movement.
 - [ ] Movement remains stable across different frame rates.
 
-## Targeting and mining
+## Future milestone - Targeting and mining (not yet implemented)
 
 - [ ] The asteroid can be selected with the documented input.
 - [ ] Selection provides clear visual feedback.
@@ -31,37 +47,34 @@ Use this checklist when the relevant feature exists. Record defects and retest a
 - [ ] Mining damage is applied consistently until the asteroid is destroyed.
 - [ ] Destroying the asteroid removes or disables it cleanly.
 
-## Resource collection
+## Future milestone - Resource collection (not yet implemented)
 
 - [ ] Destroying the asteroid releases the expected resources.
 - [ ] Released resources are visible and distinguishable.
-- [ ] Resources can be collected through the intended interaction.
+- [ ] Resources can be collected through the intended click interaction.
 - [ ] The stored resource amount updates exactly once per collected resource.
 - [ ] Collected resource objects are removed cleanly.
 
-## Manufacturing
+## Future milestone - Manufacturing (not yet implemented)
 
-- [ ] The module recipe and resource cost are displayed clearly.
+- [ ] The Storage Module recipe and resource cost are displayed clearly.
 - [ ] Manufacturing is unavailable when resources are insufficient.
 - [ ] Manufacturing consumes the correct resource amount exactly once.
-- [ ] Manufacturing produces one placeable module.
+- [ ] Manufacturing produces one placeable Storage Module.
 
-## Module placement
+## Future milestone - Module placement (not yet implemented)
 
-- [ ] Placement mode clearly shows the 3D attachment grid.
+- [ ] Placement mode clearly shows the flat 3D attachment grid.
 - [ ] The module preview snaps to valid grid positions.
 - [ ] Invalid placement positions are rejected or clearly indicated.
 - [ ] Confirming placement attaches exactly one module.
 - [ ] The attached module remains aligned with the escape pod grid.
 
-## Save/load
+## Save/load - Deferred and out of scope
 
-- [ ] Saving records all prototype state intended to persist.
-- [ ] Loading restores collected resources and manufactured or placed module state.
-- [ ] Loading does not duplicate asteroids, resources, or modules.
-- [ ] Missing or invalid save data is handled without a crash.
+Save/load is not part of the Build Week prototype and has no acceptance tests for this project.
 
-## Clean exit
+## Milestone 1 - Clean exit
 
 - [ ] Closing the running prototype exits without hanging.
 - [ ] Exiting produces no unexpected errors.

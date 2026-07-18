@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.02, 0.035, 0.055, 0.88)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.92, 0.48, 0.08, 0.9)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="PrototypeHUD" type="CanvasLayer"]
+
+[node name="InfoPanel" type="PanelContainer" parent="."]
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 312.0
+offset_bottom = 212.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Margin" type="MarginContainer" parent="InfoPanel"]
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 14
+
+[node name="Content" type="VBoxContainer" parent="InfoPanel/Margin"]
+theme_override_constants/separation = 7
+
+[node name="Title" type="Label" parent="InfoPanel/Margin/Content"]
+theme_override_colors/font_color = Color(1, 0.66, 0.22, 1)
+theme_override_font_sizes/font_size = 26
+text = "Mine Inc."
+
+[node name="Version" type="Label" parent="InfoPanel/Margin/Content"]
+theme_override_colors/font_color = Color(0.72, 0.86, 0.92, 1)
+theme_override_font_sizes/font_size = 16
+text = "Prototype v0.1.0"
+
+[node name="Event" type="Label" parent="InfoPanel/Margin/Content"]
+theme_override_colors/font_color = Color(0.72, 0.86, 0.92, 1)
+theme_override_font_sizes/font_size = 16
+text = "OpenAI Build Week 2026"
+
+[node name="Separator" type="HSeparator" parent="InfoPanel/Margin/Content"]
+
+[node name="Controls" type="Label" parent="InfoPanel/Margin/Content"]
+theme_override_colors/font_color = Color(0.9, 0.92, 0.94, 1)
+theme_override_font_sizes/font_size = 15
+text = "Right-drag to orbit\nMouse wheel to zoom\nR to reset camera"

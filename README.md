@@ -6,11 +6,13 @@ Mine Inc. is a space-based industrial strategy game about surviving, mining aste
 
 The OpenAI Build Week prototype will prove the game's immediate core loop in a small, playable 3D demonstration. It is intentionally not a complete version of the wider game.
 
-The prototype is planned for:
+The prototype environment is:
 
-- Godot 4
+- Godot Engine v4.6.2.stable.official [71f334935]
 - Typed GDScript
 - Windows 11
+
+The current documented prototype version is `0.1.0-buildweek`, stored in the root `VERSION` file. The Milestone 1 HUD presents this as `Prototype v0.1.0`.
 
 ## Core gameplay loop
 
@@ -37,7 +39,40 @@ mine-inc-build-week/
 `-- media/                     # Reserved for project media
 ```
 
-Setup, controls, and run instructions will be added when implementation begins.
+## Open and run
+
+1. Install Godot Engine v4.6.2.stable.official [71f334935].
+2. In the Godot Project Manager, select **Import**.
+3. Choose `game/project.godot` from this repository.
+4. Open the imported project.
+5. Press **F6** is not required; press **F5** or select **Run Project** to launch the configured main scene.
+
+## Controls
+
+- Hold the right mouse button and move the mouse to orbit around the escape pod.
+- Use the mouse wheel to zoom in and out.
+- Press `R` to reset the camera to its default position.
+
+## Currently implemented
+
+- Runnable Godot project and direct main-scene launch
+- Placeholder escape pod made from built-in Godot geometry and materials
+- Dark space presentation with built-in lighting and depth markers
+- Bounded orbit and zoom camera focused on the escape pod
+- Camera reset action
+- Minimal prototype and control HUD
+
+## Explicitly deferred
+
+- Asteroids, movement, and trajectories
+- Targeting and mining
+- Resource drops and click-to-collect interaction
+- Manufacturing the Storage Module
+- Module placement on the escape pod grid
+- Reset Prototype action
+- Save/load, which is out of scope for Build Week
+- Collector drone stretch goal
+- All wider-game systems excluded by the Build Week scope
 
 ## Project provenance
 

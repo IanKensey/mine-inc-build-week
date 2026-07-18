@@ -1,0 +1,115 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/pod/escape_pod.tscn" id="1_pod"]
+[ext_resource type="Script" path="res://scripts/camera/orbit_camera.gd" id="2_camera"]
+[ext_resource type="PackedScene" path="res://scenes/ui/prototype_hud.tscn" id="3_hud"]
+
+[sub_resource type="Environment" id="Environment_space"]
+background_mode = 1
+background_color = Color(0.004, 0.006, 0.014, 1)
+background_energy_multiplier = 0.8
+ambient_light_source = 3
+ambient_light_color = Color(0.11, 0.16, 0.23, 1)
+ambient_light_energy = 0.55
+reflected_light_source = 2
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="Material_star_near"]
+shading_mode = 0
+albedo_color = Color(0.72, 0.88, 1, 1)
+emission_enabled = true
+emission = Color(0.5, 0.74, 1, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="StandardMaterial3D" id="Material_star_warm"]
+shading_mode = 0
+albedo_color = Color(1, 0.76, 0.42, 1)
+emission_enabled = true
+emission = Color(1, 0.48, 0.16, 1)
+emission_energy_multiplier = 1.6
+
+[sub_resource type="SphereMesh" id="SphereMesh_star_near"]
+material = SubResource("Material_star_near")
+radius = 0.09
+height = 0.18
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_star_warm"]
+material = SubResource("Material_star_warm")
+radius = 0.14
+height = 0.28
+radial_segments = 8
+rings = 4
+
+[node name="Prototype" type="Node3D"]
+
+[node name="SpaceEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_space")
+
+[node name="KeyLight" type="DirectionalLight3D" parent="."]
+rotation = Vector3(-0.75, -0.65, 0)
+light_color = Color(0.72, 0.84, 1, 1)
+light_energy = 1.4
+shadow_enabled = true
+
+[node name="RimLight" type="DirectionalLight3D" parent="."]
+rotation = Vector3(0.35, 2.25, 0.2)
+light_color = Color(1, 0.42, 0.12, 1)
+light_energy = 0.65
+
+[node name="DepthMarkers" type="Node3D" parent="."]
+
+[node name="Star01" type="MeshInstance3D" parent="DepthMarkers"]
+position = Vector3(-13, 7, -18)
+mesh = SubResource("SphereMesh_star_near")
+
+[node name="Star02" type="MeshInstance3D" parent="DepthMarkers"]
+position = Vector3(11, 9, -22)
+scale = Vector3(0.6, 0.6, 0.6)
+mesh = SubResource("SphereMesh_star_near")
+
+[node name="Star03" type="MeshInstance3D" parent="DepthMarkers"]
+position = Vector3(16, -4, -15)
+mesh = SubResource("SphereMesh_star_warm")
+
+[node name="Star04" type="MeshInstance3D" parent="DepthMarkers"]
+position = Vector3(-18, -8, -24)
+scale = Vector3(0.55, 0.55, 0.55)
+mesh = SubResource("SphereMesh_star_near")
+
+[node name="Star05" type="MeshInstance3D" parent="DepthMarkers"]
+position = Vector3(5, 14, -30)
+scale = Vector3(0.75, 0.75, 0.75)
+mesh = SubResource("SphereMesh_star_near")
+
+[node name="Star06" type="MeshInstance3D" parent="DepthMarkers"]
+position = Vector3(-7, -12, -20)
+mesh = SubResource("SphereMesh_star_warm")
+
+[node name="Star07" type="MeshInstance3D" parent="DepthMarkers"]
+position = Vector3(21, 3, 2)
+scale = Vector3(0.5, 0.5, 0.5)
+mesh = SubResource("SphereMesh_star_near")
+
+[node name="Star08" type="MeshInstance3D" parent="DepthMarkers"]
+position = Vector3(-20, 10, 4)
+scale = Vector3(0.7, 0.7, 0.7)
+mesh = SubResource("SphereMesh_star_near")
+
+[node name="EscapePod" parent="." instance=ExtResource("1_pod")]
+
+[node name="CameraRig" type="Node3D" parent="."]
+script = ExtResource("2_camera")
+target_path = NodePath("../EscapePod")
+minimum_distance = 5.0
+maximum_distance = 18.0
+default_distance = 10.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig"]
+current = true
+fov = 52.0
+near = 0.1
+far = 100.0
+
+[node name="PrototypeHUD" parent="." instance=ExtResource("3_hud")]

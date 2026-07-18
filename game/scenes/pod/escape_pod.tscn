@@ -1,0 +1,126 @@
+[gd_scene load_steps=13 format=3]
+
+[sub_resource type="StandardMaterial3D" id="Material3D_hull"]
+albedo_color = Color(0.28, 0.33, 0.37, 1)
+metallic = 0.65
+roughness = 0.32
+
+[sub_resource type="StandardMaterial3D" id="Material3D_trim"]
+albedo_color = Color(0.92, 0.48, 0.08, 1)
+metallic = 0.35
+roughness = 0.28
+
+[sub_resource type="StandardMaterial3D" id="Material3D_window"]
+albedo_color = Color(0.04, 0.32, 0.45, 1)
+metallic = 0.15
+roughness = 0.12
+emission_enabled = true
+emission = Color(0.02, 0.18, 0.28, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="StandardMaterial3D" id="Material3D_dark"]
+albedo_color = Color(0.055, 0.065, 0.075, 1)
+metallic = 0.8
+roughness = 0.38
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_body"]
+material = SubResource("Material3D_hull")
+radius = 1.3
+height = 4.2
+radial_segments = 24
+rings = 8
+
+[sub_resource type="SphereMesh" id="SphereMesh_window"]
+material = SubResource("Material3D_window")
+radius = 0.82
+height = 1.64
+radial_segments = 24
+rings = 12
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_collar"]
+material = SubResource("Material3D_trim")
+top_radius = 1.36
+bottom_radius = 1.36
+height = 0.22
+radial_segments = 24
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_thruster"]
+material = SubResource("Material3D_dark")
+top_radius = 0.36
+bottom_radius = 0.48
+height = 0.8
+radial_segments = 16
+
+[sub_resource type="BoxMesh" id="BoxMesh_fin"]
+material = SubResource("Material3D_trim")
+size = Vector3(1.5, 0.16, 0.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_panel"]
+material = SubResource("Material3D_dark")
+size = Vector3(0.12, 1.25, 1.4)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_antenna"]
+material = SubResource("Material3D_hull")
+top_radius = 0.045
+bottom_radius = 0.045
+height = 1.0
+radial_segments = 8
+
+[sub_resource type="SphereMesh" id="SphereMesh_beacon"]
+material = SubResource("Material3D_trim")
+radius = 0.12
+height = 0.24
+radial_segments = 12
+rings = 6
+
+[node name="EscapePod" type="Node3D"]
+
+[node name="Body" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_body")
+
+[node name="ForwardWindow" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.65, 0.98)
+scale = Vector3(0.82, 0.72, 0.32)
+mesh = SubResource("SphereMesh_window")
+
+[node name="UpperCollar" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1.35, 0)
+mesh = SubResource("CylinderMesh_collar")
+
+[node name="LowerCollar" type="MeshInstance3D" parent="."]
+position = Vector3(0, -1.35, 0)
+mesh = SubResource("CylinderMesh_collar")
+
+[node name="LeftFin" type="MeshInstance3D" parent="."]
+position = Vector3(-1.65, -0.65, 0)
+rotation = Vector3(0, 0, -0.2)
+mesh = SubResource("BoxMesh_fin")
+
+[node name="RightFin" type="MeshInstance3D" parent="."]
+position = Vector3(1.65, -0.65, 0)
+rotation = Vector3(0, 0, 0.2)
+mesh = SubResource("BoxMesh_fin")
+
+[node name="LeftEquipmentPanel" type="MeshInstance3D" parent="."]
+position = Vector3(-1.38, 0.15, 0)
+mesh = SubResource("BoxMesh_panel")
+
+[node name="RightEquipmentPanel" type="MeshInstance3D" parent="."]
+position = Vector3(1.38, 0.15, 0)
+mesh = SubResource("BoxMesh_panel")
+
+[node name="LeftThruster" type="MeshInstance3D" parent="."]
+position = Vector3(-0.58, -2.15, 0)
+mesh = SubResource("CylinderMesh_thruster")
+
+[node name="RightThruster" type="MeshInstance3D" parent="."]
+position = Vector3(0.58, -2.15, 0)
+mesh = SubResource("CylinderMesh_thruster")
+
+[node name="AntennaMast" type="MeshInstance3D" parent="."]
+position = Vector3(0, 2.45, 0)
+mesh = SubResource("CylinderMesh_antenna")
+
+[node name="AntennaBeacon" type="MeshInstance3D" parent="."]
+position = Vector3(0, 3.0, 0)
+mesh = SubResource("SphereMesh_beacon")
