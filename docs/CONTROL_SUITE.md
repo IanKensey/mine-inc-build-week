@@ -2,8 +2,8 @@
 
 **Status:** Active  
 **Last updated:** 2026-07-18  
-**Stable committed prototype:** `0.4.0-buildweek`  
-**Active milestone:** Milestone 5 — attach the pending Storage Module
+**Stable committed prototype:** `0.5.0-buildweek`  
+**Active milestone:** Milestone 6 — integration and submission closeout
 
 This suite is the durable project memory for Mine Inc. during OpenAI Build Week. It preserves the project’s direction, working method, decisions, risks, milestone state, and submission obligations when a conversation or Codex session changes.
 

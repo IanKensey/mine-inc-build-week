@@ -140,63 +140,72 @@ Completion evidence:
 - short video captured showing Rock collection and manufacturing;
 - changes committed and pushed.
 
-## Active required work
+## Completed attachment milestone
 
 ### Milestone 5 — Attach the Storage Module
 
-**Target version:** `0.5.0-buildweek`  
-**Status:** Active planning
+**Version:** `0.5.0-buildweek`  
+**Status:** Complete, manually verified, committed
 
 Player outcome:
 
-- take the pending Storage Module;
-- place or attach it to a clear pod attachment area;
-- receive unmistakable visual confirmation that the pod has expanded;
-- complete the prototype loop.
+- see Rock and the manufactured Storage Module in a fixed Cargo panel;
+- select the Storage Module;
+- enter attachment mode;
+- choose one of six authored sockets;
+- attach the module visibly to the pod;
+- complete the full Build Week gameplay loop.
 
-Minimum intended scope:
+Completion evidence:
 
-- one module;
-- one simple placement surface or small 3D grid;
-- clear valid-position feedback;
-- one confirmed attachment;
-- pending state consumed exactly once;
-- reset restores the clean prototype;
-- no moving, rotating, deleting, capacity simulation, or multiple modules unless required for clarity.
+- all six socket positions manually tested across repeated runs;
+- complete collect → manufacture → select → attach flow passed;
+- video and screenshots captured;
+- changes committed and pushed;
+- no generic inventory or construction framework added.
 
-Key design question:
-
-Find the smallest interaction that genuinely demonstrates attachment without creating a general construction system.
-
-Milestone 4 is now committed and reviewed. The next task is to define the smallest convincing attachment interaction before asking Codex for a planning proposal.
+## Active required work
 
 ### Milestone 6 — Integration and submission closeout
 
 **Target version:** `0.6.0-buildweek` or final Build Week tag  
-**Status:** Planned
+**Status:** Active
 
 Purpose:
 
-Make the completed loop reliable, understandable, testable, and ready for judging.
+Freeze the feature set and make the completed loop reliable, understandable, easy to run, well evidenced, and ready for judging.
 
-Work may include:
+Approved work categories:
 
+- read-only integration audit;
 - full-loop regression;
-- focused UI wording and layout polish;
+- essential defect fixes only;
+- narrowly justified UI wording or readability correction;
 - reset and replay hardening;
-- Windows run instructions;
-- repository cleanup;
-- README collaboration narrative;
-- final screenshots;
-- final gameplay capture;
-- public YouTube demo under three minutes;
-- Devpost description;
-- track selection;
+- repository and documentation cross-check;
+- exact Windows/Godot run instructions;
+- README collaboration and provenance narrative;
+- clean-clone or clean-import test where practical;
+- final screenshots and full-loop capture;
+- public YouTube demo under three minutes with audio;
+- Devpost text and track decision;
 - `/feedback` Codex Session ID;
-- submission checklist;
-- final tag.
+- final version/tag and submission checklist.
 
-Milestone 6 is not a feature-expansion milestone.
+Not approved:
+
+- new gameplay systems;
+- collector drone;
+- storage-capacity effects;
+- sound or music production;
+- animation systems;
+- extra module types;
+- extra asteroid types;
+- refactoring for elegance;
+- generalisation of inventory, crafting, or construction;
+- any feature not required for reliability or judge comprehension.
+
+Milestone 6 should be executed as gated closeout work, not as one large speculative implementation task.
 
 ## Stop line
 

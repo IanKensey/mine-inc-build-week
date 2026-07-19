@@ -5,13 +5,13 @@
 
 ## Current summary
 
-- **Stable committed version:** `0.4.0-buildweek`
-- **Active milestone:** Milestone 5 — attach the pending Storage Module
-- **Milestone 5 target:** `0.5.0-buildweek`
-- **Current gate:** Technical Lead and Product Owner design review
-- **Next gate:** Codex planning proposal and approval
-- **Remaining gameplay milestone:** Milestone 5
-- **Submission closeout:** Milestone 6
+- **Stable committed version:** `0.5.0-buildweek`
+- **Active milestone:** Milestone 6 — integration and submission closeout
+- **Current gate:** Read-only integration and submission-readiness audit
+- **Next gate:** Product Owner approval of essential fixes only
+- **Gameplay feature state:** Complete and frozen
+- **Submission deadline:** 2026-07-21 at 5:00 PM Pacific Time
+- **Required final outputs:** tested repository, README, public narrated YouTube demo, Devpost entry, and primary Codex `/feedback` Session ID
 
 ## Status table
 
@@ -22,54 +22,53 @@
 | M2 Mining | Track, select, shoot, destroy, reset | 0.2.0 | Complete | Passed after defect fix | Yes | Screenshots/video/log | Closed |
 | M3 Resources | Release, drift, collect, fade, expire | 0.3.0 | Complete | Passed after fade correction | Yes | Screenshots/video/log | Closed |
 | M4 Manufacturing | Spend Rock; show progress; create one pending module | 0.4.0 | Complete | Passed | Yes | Short video/log | Closed |
-| M5 Attachment | Attach pending module to pod | 0.5.0 target | Not started | Not started | No | Pending | Active planning |
-| M6 Closeout | Harden, document, package, film, submit | Final | Not started | Not started | No | Pending | Planned |
+| M5 Attachment | Attach pending module to pod | 0.5.0 | Complete | Passed on all six sockets | Yes | Video/screenshots/log | Closed |
+| M6 Closeout | Audit, harden, document, package, film, submit | Final | In progress | In progress | No | In progress | Active |
 
-## Active milestone: M5 Attachment
+## Active milestone: M6 Integration and Submission Closeout
 
 Established starting state:
 
-- the player can manufacture exactly one Storage Module;
-- completion produces a HUD-only `Pending placement` state;
-- the module cannot be manufactured twice;
-- reset clears the pending module;
-- no module geometry or placement system exists yet.
+- versions `0.1.0` through `0.5.0` are committed and pushed;
+- the complete observe → mine → collect → manufacture → attach loop works;
+- all six authored attachment sockets have passed manual testing;
+- milestone screenshots and videos exist;
+- governance documents are committed;
+- no required gameplay feature remains.
 
-Required player outcome:
+Feature freeze:
 
-- the player recognises that the completed module is ready to place;
-- the player selects or initiates placement;
-- the player sees a clear valid attachment location on the pod;
-- the player confirms one attachment;
-- the pending module is consumed exactly once;
-- the pod visibly changes;
-- reset restores the pre-placement state for another complete run.
+- no new gameplay systems;
+- no stretch work by default;
+- fixes require an observed defect, material submission risk, or clear judge-comprehension benefit;
+- final media and documentation must match the frozen build.
 
-Scope boundary:
+M6 gates:
 
-- one Storage Module;
-- one small attachment surface or deliberately limited 3D grid;
-- one confirmation path;
-- no general construction framework;
-- no multiple modules;
-- no rotation, moving, deletion, storage simulation, or persistence unless a minimal element is essential for comprehensibility.
+1. read-only technical and submission-readiness audit;
+2. approve and implement only essential fixes;
+3. full regression and clean-run verification;
+4. documentation and repository closeout;
+5. final capture and video production;
+6. Devpost entry, `/feedback` ID, final tag, and submission.
 
 Current action:
 
-The Product Owner and Technical Lead must agree the smallest player-facing placement experience. Codex should then inspect the repository and produce a planning-only proposal before any implementation.
+Ask Codex to inspect the committed repository and produce a read-only Milestone 6 audit. It must separate blockers, recommended fixes, optional polish, and rejected scope. It must not modify files during the audit.
 
 ## Next actions
 
-1. Review the attachment experience from the player’s perspective.
-2. Decide whether placement should be direct-click, preview-and-confirm, or a minimal grid interaction.
-3. Define valid-position feedback and completion feedback.
-4. Send Codex a planning-only Milestone 5 request.
-5. Review and constrain the proposal.
-6. Approve implementation only after the milestone boundary is clear.
-7. Run focused M5 manual QA and full-loop regression.
-8. Capture the complete loop on video.
-9. Commit and push M5.
-10. Move immediately into M6 submission closeout.
+1. Request the read-only Codex M6 audit.
+2. Review findings against the feature-freeze rule.
+3. Approve blockers and essential fixes only.
+4. Complete full-loop regression from clean launch through reset and replay.
+5. Verify README, VERSION, HUD, controls, screenshots, and video all agree.
+6. Capture the primary Codex `/feedback` Session ID.
+7. Freeze and tag the final build.
+8. Record and publish the narrated YouTube demo.
+9. Complete the Devpost text and track selection.
+10. Test repository and video links while signed out.
+11. Submit before the deadline and preserve confirmation evidence.
 
 ## Closure checklist
 

@@ -12,9 +12,9 @@ This document is an operational summary, not a substitute for the official rules
 
 Stable committed prototype:
 
-`0.4.0-buildweek`
+`0.5.0-buildweek`
 
-The demonstrated loop currently covers:
+The complete Build Week gameplay loop now covers:
 
 - 3D pod observation and camera control;
 - authored asteroid trajectory;
@@ -23,14 +23,24 @@ The demonstrated loop currently covers:
 - manual Rock collection;
 - 4-Rock Storage Module manufacturing;
 - three-second visible progress;
-- one completed module pending placement.
+- fixed six-slot Cargo presentation;
+- Storage Module selection;
+- six authored attachment sockets;
+- successful module attachment to any pod face;
+- reset and full-loop replay.
 
-Remaining before feature freeze:
+Gameplay feature development is frozen.
 
-1. Milestone 5 — attach the pending Storage Module to the pod.
-2. Milestone 6 — regression, repository closeout, final capture, video, `/feedback` ID, Devpost entry, and submission.
+Remaining work:
 
-A short Milestone 4 video has been captured showing Rock collection and manufacturing.
+1. Milestone 6 read-only audit.
+2. Essential fixes only.
+3. Full regression and repository closeout.
+4. Final narrated YouTube demo.
+5. Devpost text, track, repository link, and `/feedback` Session ID.
+6. Final submission and confirmation evidence.
+
+Milestone videos and screenshots have been captured through M5.
 
 ## Competition objective
 

@@ -13,8 +13,7 @@ Scales:
 
 | ID | Risk | Likelihood | Impact | State | Mitigation / next action |
 |---|---|---|---|---|---|
-| R-001 | Submission deadline leaves too little time after core implementation | Medium | Critical | Open | Finish M4 and M5 with strict boundaries; reserve M6 for hardening, evidence, video, README, and Devpost submission. Cut stretch work first. |
-| R-002 | M5 expands into a general building system | High | High | Open | One module, one attachment surface, one confirmation path. No rotation, removal, inventory, multiple modules, capacity, or reusable construction framework unless essential. |
+| R-001 | Submission deadline leaves too little time for regression, video, repository closeout, and Devpost submission | Medium | Critical | Open | Feature-freeze now; run the audit immediately; fix blockers only; reserve protected time for capture, upload, link testing, and form completion. |
 | R-003 | Governance work displaces Codex implementation or weakens the Build Week story | Low | High | Mitigated | Codex continues core coding in the primary session while controls are authored separately. README and video explicitly distinguish roles and Codex acceleration. |
 | R-004 | Primary Codex session is lost or `/feedback` ID is not captured | Medium | High | Open | Continue using the primary build thread; capture the `/feedback` Session ID before submission; store it safely outside the chat as well. |
 | R-005 | Final build does not match the demo video or README | Medium | High | Open | Freeze gameplay before final capture; record from the final tagged build; perform a final document/build cross-check. |
@@ -37,6 +36,7 @@ Scales:
 | R-X03 | Rock fade calculated correctly but remained invisible under Compatibility renderer | Replaced `GeometryInstance3D.transparency` with instance-local `StandardMaterial3D` alpha; manually verified. |
 | R-X04 | Resource collection could duplicate or race reset/expiration | Pickup interaction shuts down before signal/removal; controller guards release and reset; manually verified. |
 | R-X05 | M4 timer, repeated input, or reset race could duplicate spending or pending state | Controller-authoritative state, one timer, request revalidation, timeout guard, and reset sequencing were implemented and manually verified. |
+| R-X06 | M5 could expand into a general inventory or construction system | Fixed Cargo presentation, one module lifecycle, six authored sockets, and socket-click placement were implemented without generic systems; all six faces manually verified. |
 
 ## Escalation rule
 

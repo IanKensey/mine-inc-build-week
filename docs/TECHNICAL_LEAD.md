@@ -28,22 +28,21 @@ The prototype proves one complete progression loop. It does not attempt to build
 
 Stable committed version:
 
-`0.4.0-buildweek`
+`0.5.0-buildweek`
 
 Completed and manually verified:
 
 - Milestone 1 — 3D foundation;
 - Milestone 2 — asteroid selection and mining;
 - Milestone 3 — Rock release, drift, collection, fade, and expiration;
-- Milestone 4 — manufacture one Storage Module and hold it pending placement.
+- Milestone 4 — manufacture one Storage Module and hold it in Cargo;
+- Milestone 5 — select the module and attach it to any of six authored pod sockets.
 
 Active:
 
-- Milestone 5 — attach the pending Storage Module to the pod.
+- Milestone 6 — integration hardening, feature freeze, evidence, packaging, and submission.
 
-Next planned:
-
-- Milestone 6 — integration hardening, evidence, packaging, and submission.
+No further gameplay milestone is planned for Build Week.
 
 See `MILESTONE_STATUS.md` for the live state.
 
@@ -285,6 +284,21 @@ The timer and fade calculations were correct, but the visible result failed. Vis
 ### State should not duplicate derivable facts
 
 Do not store “affordable” as an independent manufacturing state when it can be derived from Rock count. Stored state should represent real process transitions, not presentation conditions.
+
+## Milestone 6 feature-freeze rule
+
+The required gameplay loop is complete.
+
+During Milestone 6:
+
+- no new gameplay system may be added;
+- no stretch feature may start by default;
+- visual polish must solve a specific observed communication problem;
+- code cleanup must reduce a demonstrated risk, not pursue elegance;
+- every change must improve reliability, judge comprehension, repository readiness, or submission evidence;
+- final capture must use the frozen build that the README describes.
+
+The Technical Lead should prefer no change over a change whose submission value is uncertain.
 
 ## Continuity protocol
 
