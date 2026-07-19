@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/pod/escape_pod.tscn" id="1_pod"]
 [ext_resource type="Script" path="res://scripts/camera/orbit_camera.gd" id="2_camera"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/space/asteroid_flyby.gd" id="6_flyby"]
 [ext_resource type="PackedScene" path="res://scenes/space/asteroid.tscn" id="7_asteroid"]
 [ext_resource type="PackedScene" path="res://scenes/resources/rock_pickup.tscn" id="8_rock"]
+[ext_resource type="PackedScene" path="res://scenes/pod/storage_module.tscn" id="9_module"]
 
 [sub_resource type="Environment" id="Environment_space"]
 background_mode = 1
@@ -73,6 +74,8 @@ rock_pickup_lifetime = 14.0
 rock_base_drift_speed = 0.75
 storage_module_rock_cost = 4
 manufacturing_duration = 3.0
+attachment_socket_collision_mask = 8
+storage_module_scene = ExtResource("9_module")
 
 [node name="SpaceEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_space")

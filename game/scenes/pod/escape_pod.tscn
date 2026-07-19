@@ -1,4 +1,6 @@
-[gd_scene load_steps=13 format=3]
+[gd_scene load_steps=14 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/pod/attachment_socket.tscn" id="1_socket"]
 
 [sub_resource type="StandardMaterial3D" id="Material3D_hull"]
 albedo_color = Color(0.28, 0.33, 0.37, 1)
@@ -127,3 +129,34 @@ mesh = SubResource("SphereMesh_beacon")
 
 [node name="MiningOrigin" type="Marker3D" parent="."]
 position = Vector3(0, 0.3, 1.55)
+
+[node name="AttachmentSockets" type="Node3D" parent="."]
+
+[node name="TopSocket" parent="AttachmentSockets" instance=ExtResource("1_socket")]
+position = Vector3(0, 2.15, -0.75)
+socket_label = "Top"
+
+[node name="BottomSocket" parent="AttachmentSockets" instance=ExtResource("1_socket")]
+position = Vector3(0, -2.25, -0.75)
+rotation = Vector3(0, 0, 3.14159)
+socket_label = "Bottom"
+
+[node name="LeftSocket" parent="AttachmentSockets" instance=ExtResource("1_socket")]
+position = Vector3(-1.65, 0.55, 0)
+rotation = Vector3(0, 0, 1.5708)
+socket_label = "Left"
+
+[node name="RightSocket" parent="AttachmentSockets" instance=ExtResource("1_socket")]
+position = Vector3(1.65, 0.55, 0)
+rotation = Vector3(0, 0, -1.5708)
+socket_label = "Right"
+
+[node name="FrontSocket" parent="AttachmentSockets" instance=ExtResource("1_socket")]
+position = Vector3(0, -0.65, 1.3)
+rotation = Vector3(1.5708, 0, 0)
+socket_label = "Front"
+
+[node name="RearSocket" parent="AttachmentSockets" instance=ExtResource("1_socket")]
+position = Vector3(0, 0, -1.3)
+rotation = Vector3(-1.5708, 0, 0)
+socket_label = "Rear"

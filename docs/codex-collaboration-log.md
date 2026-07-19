@@ -492,3 +492,76 @@
 - The complete mining, collection, and manufacturing loop was repeated successfully.
 - Camera, trajectory, targeting, five-hit destruction, particles, Rock drift, fade, collection, expiration, reset, and normal fly-by completion remain functional.
 - No unexpected Godot debugger errors were observed.
+
+## 2026-07-18 - Milestone 5 implementation
+
+### Human decisions
+
+- Approved a fixed three-column, two-row Cargo panel with one live Rock slot, one Storage Module slot, and four inert Empty slots.
+- Approved the controller-local lifecycle `NOT_BUILT`, `MANUFACTURING`, `IN_INVENTORY`, `PLACEMENT_ACTIVE`, and `ATTACHED`.
+- Approved selection-plus-socket-click placement using authored Top, Bottom, Left, Right, Front, and Rear sockets.
+- Required selection to persist through cancellation and clear only after attachment or Reset Prototype.
+- Approved physics layer 4 for sockets with mask value `8`, preserving asteroid layer 2 and Rock layer 3.
+- Required consistent post-attachment text across Manufacturing and Cargo.
+
+### Codex contribution
+
+- Migrated the Milestone 4 pending-module state into the approved Storage Module lifecycle while keeping affordability derived from the scene-local Rock integer.
+- Added fixed Cargo presentation with controller-validated selection, Attach, and Cancel Placement interaction.
+- Added six authored socket instances using opaque emissive built-in geometry and deferred collision-shape changes.
+- Added one scriptless Storage Module scene using built-in geometry and Compatibility-renderer-safe materials.
+- Added raycast switching between normal asteroid/Rock mask `6` and socket-only mask `8`.
+- Added attachment, duplicate-request guards, reset cleanup, and late timer/input validation.
+
+### Files created
+
+- `game/scenes/pod/attachment_socket.tscn`
+- `game/scenes/pod/storage_module.tscn`
+- `game/scripts/pod/attachment_socket.gd`
+
+### Files modified
+
+- `VERSION`
+- `README.md`
+- `docs/codex-collaboration-log.md`
+- `docs/test-checklist.md`
+- `game/scenes/main/prototype.tscn`
+- `game/scenes/pod/escape_pod.tscn`
+- `game/scenes/ui/prototype_hud.tscn`
+- `game/scripts/main/prototype_controller.gd`
+- `game/scripts/ui/prototype_hud.gd`
+
+### Implementation trade-offs
+
+- Cargo uses six authored Controls rather than an inventory collection or generalized slot model.
+- The module is parented directly to the chosen socket with an identity local transform, making the authored socket authoritative.
+- Placement mode gives left-click exclusively to socket physics layer 4; normal Rock and asteroid interaction resumes after cancellation.
+- Socket markers are opaque and emissive rather than transparent or animated for Compatibility renderer support.
+- The module has no script, collision, capacity effect, detachment, or movement behaviour.
+
+### Manual verification still required
+
+- Confirm Cargo and Manufacturing remain readable together at 1280 by 720.
+- Confirm all six sockets are visible, accessible, clickable, correctly oriented, and clear of pod geometry.
+- Confirm Attach, Cancel Placement, empty-space clicks, camera input, Space input, and repeated-click guards.
+- Confirm both panels show consistent text in every lifecycle state.
+- Confirm reset is safe during manufacturing, inventory, placement, and attached states and makes the complete loop replayable.
+- Confirm all Milestone 1–4 behaviour remains unchanged and no debugger errors occur.
+
+
+### Human verification — Milestone 5
+
+- Confirmed the prototype displays version `0.5.0`.
+- Confirmed the Cargo panel displays six fixed slots.
+- Confirmed the Cargo Rock quantity remains synchronized with the existing Rock display.
+- Confirmed the complete mining and Rock-collection sequence remains functional.
+- Confirmed manufacturing spends the approved Rock cost and produces one Storage Module in Cargo.
+- Confirmed selecting the Storage Module enables the Attach action.
+- Confirmed Attach enters placement mode and displays six attachment sockets around the escape pod.
+- Confirmed the Storage Module can be attached successfully to the Top, Bottom, Left, Right, Front, and Rear sockets across repeated runs.
+- Confirmed each attachment point is visible, clickable, and applies the module to the intended pod face.
+- Confirmed successful attachment removes the module from Cargo and hides all attachment markers.
+- Confirmed the full collect → manufacture → select → attach flow works repeatedly.
+- Captured gameplay video and screenshots showing the Milestone 5 interaction.
+- No faults or unexpected errors were observed during manual testing.
+

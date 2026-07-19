@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/pod/attachment_socket.gd" id="1_socket"]
+
+[sub_resource type="StandardMaterial3D" id="Material_socket"]
+shading_mode = 0
+albedo_color = Color(0.08, 0.82, 1, 1)
+emission_enabled = true
+emission = Color(0.04, 0.72, 1, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="TorusMesh" id="Torus_socket"]
+material = SubResource("Material_socket")
+inner_radius = 0.38
+outer_radius = 0.58
+rings = 16
+ring_segments = 24
+
+[sub_resource type="CylinderMesh" id="Cylinder_socket"]
+material = SubResource("Material_socket")
+top_radius = 0.13
+bottom_radius = 0.13
+height = 0.16
+radial_segments = 12
+
+[sub_resource type="SphereShape3D" id="SphereShape_socket"]
+radius = 0.7
+
+[node name="AttachmentSocket" type="Area3D"]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+monitorable = true
+script = ExtResource("1_socket")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+disabled = true
+shape = SubResource("SphereShape_socket")
+
+[node name="MarkerVisual" type="Node3D" parent="."]
+visible = false
+
+[node name="Ring" type="MeshInstance3D" parent="MarkerVisual"]
+mesh = SubResource("Torus_socket")
+
+[node name="CentreBeacon" type="MeshInstance3D" parent="MarkerVisual"]
+mesh = SubResource("Cylinder_socket")
+

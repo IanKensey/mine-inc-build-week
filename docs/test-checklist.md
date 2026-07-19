@@ -270,13 +270,71 @@ Use this checklist when the relevant feature exists. Record defects and retest a
 - [ ] Manufacturing consumes the correct resource amount exactly once.
 - [ ] Manufacturing produces one placeable Storage Module.
 
-## Future milestone - Module placement (not yet implemented)
+## Milestone 5 - Cargo presentation and lifecycle
 
-- [ ] Placement mode clearly shows the flat 3D attachment grid.
-- [ ] The module preview snaps to valid grid positions.
-- [ ] Invalid placement positions are rejected or clearly indicated.
-- [ ] Confirming placement attaches exactly one module.
-- [ ] The attached module remains aligned with the escape pod grid.
+- [ ] Launch or reset and confirm the HUD displays `Prototype v0.5.0`.
+- [ ] Confirm Cargo appears below Manufacturing as a readable three-column, two-row grid.
+- [ ] Confirm Cargo contains one Rock slot, one Storage Module slot, and four inert Empty slots.
+- [ ] Confirm the Cargo Rock quantity always matches the existing left-side Rock summary.
+- [ ] Confirm Rock and Empty slots cannot be selected or moved.
+- [ ] Confirm Manufacturing completion produces exactly one selectable Storage Module in Cargo.
+- [ ] Confirm clicking the module selects and visibly highlights it.
+- [ ] Click the selected module again and confirm it remains selected.
+- [ ] Confirm Attach enables only while the completed module is selected in Cargo.
+
+## Milestone 5 - Placement interaction
+
+- [ ] Press **Attach** and confirm exactly six socket markers appear: Top, Bottom, Left, Right, Front, and Rear.
+- [ ] Confirm the button changes to **Cancel Placement**.
+- [ ] Confirm right-drag orbit, wheel zoom, and `R` camera reset remain functional during placement.
+- [ ] Press `Space` during placement and confirm it does not activate a HUD control or attach a module.
+- [ ] Click empty world space and confirm placement remains active and nothing attaches.
+- [ ] Confirm Rock and asteroid left-click interaction is unavailable only while placement is active.
+- [ ] Confirm Rock pickups continue drifting and fading during placement.
+- [ ] Press **Cancel Placement** and confirm all markers hide and become non-interactive.
+- [ ] Confirm cancellation returns the module to Cargo still selected and consumes nothing.
+- [ ] Press **Attach** again and confirm placement can be retried.
+
+## Milestone 5 - Socket transforms and attachment
+
+- [ ] Inspect each socket from useful camera angles and confirm association with its intended pod face.
+- [ ] Confirm each socket is reachable without changing the existing orbit or zoom limits.
+- [ ] Confirm each marker is readable against space and uses opaque Compatibility-safe presentation.
+- [ ] Confirm each socket can be clicked reliably without another socket intercepting the ray.
+- [ ] Attach separately to Top, Bottom, Left, Right, Front, and Rear across reset runs.
+- [ ] Confirm the module clears the pod, antenna, window, fins, equipment panels, and thrusters at every socket.
+- [ ] Confirm the module extends outward with the correct authored orientation at every socket.
+- [ ] Confirm the attached module uses identity local position and rotation under the selected socket.
+- [ ] Confirm a valid click creates exactly one attached Storage Module.
+- [ ] Confirm all six markers hide immediately after attachment.
+- [ ] Confirm the Storage Module disappears from Cargo and Attach disables.
+- [ ] Confirm Cargo says `Storage Module attached — pod expanded.`.
+- [ ] Confirm Manufacturing reports the module as attached or installed and does not say `Pending placement`.
+- [ ] Confirm additional clicks and manufacture requests cannot create another module.
+
+## Milestone 5 - Collision routing and reset safety
+
+- [ ] Confirm asteroid selection still uses physics layer 2 and Rock collection still uses physics layer 3.
+- [ ] Confirm normal interaction uses combined mask value `6`.
+- [ ] Confirm placement interaction queries only socket physics layer 4 with mask value `8`.
+- [ ] Confirm socket collision shapes are disabled outside placement mode.
+- [ ] Reset during manufacturing and confirm no late completion appears.
+- [ ] Reset with the module in Cargo and confirm its selection and inventory presence clear.
+- [ ] Reset during placement and confirm every marker and socket collision disables safely.
+- [ ] Reset immediately after attachment and confirm the attached module is removed.
+- [ ] Confirm every reset restores Rock to zero, lifecycle to initial state, and both panels to unavailable/empty presentation.
+- [ ] Repeat the complete mine, collect, manufacture, select, attach, and reset loop.
+- [ ] Confirm no duplicate modules, sockets, signals, spending, or attachment occur across repeated runs.
+
+## Milestone 5 - Milestone 1–4 regression
+
+- [ ] Confirm the asteroid fly-by remains approximately 27–28 seconds.
+- [ ] Confirm camera, trajectory, selection, mining, five-hit destruction, and particles remain correct.
+- [ ] Confirm exactly three Rock pickups still spawn, drift, fade, expire, and collect for six total Rock.
+- [ ] Confirm manufacturing still costs four Rock, lasts approximately three seconds, and permits Rock collection while active.
+- [ ] Confirm normal fly-by completion releases no Rock.
+- [ ] Confirm exit and relaunch remain clean.
+- [ ] Confirm no unexpected debugger errors occur through the complete Build Week loop.
 
 ## Save/load - Deferred and out of scope
 

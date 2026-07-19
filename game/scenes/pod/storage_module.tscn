@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3]
+
+[sub_resource type="StandardMaterial3D" id="Material_hull"]
+albedo_color = Color(0.16, 0.2, 0.23, 1)
+metallic = 0.72
+roughness = 0.3
+
+[sub_resource type="StandardMaterial3D" id="Material_trim"]
+albedo_color = Color(0.92, 0.48, 0.08, 1)
+metallic = 0.35
+roughness = 0.28
+
+[sub_resource type="StandardMaterial3D" id="Material_light"]
+shading_mode = 0
+albedo_color = Color(0.05, 0.75, 0.92, 1)
+emission_enabled = true
+emission = Color(0.03, 0.62, 1, 1)
+emission_energy_multiplier = 2.4
+
+[sub_resource type="BoxMesh" id="Box_housing"]
+material = SubResource("Material_hull")
+size = Vector3(1.15, 0.75, 0.9)
+
+[sub_resource type="CylinderMesh" id="Cylinder_base"]
+material = SubResource("Material_trim")
+top_radius = 0.48
+bottom_radius = 0.48
+height = 0.16
+radial_segments = 16
+
+[sub_resource type="BoxMesh" id="Box_trim"]
+material = SubResource("Material_trim")
+size = Vector3(1.24, 0.12, 0.98)
+
+[sub_resource type="BoxMesh" id="Box_light"]
+material = SubResource("Material_light")
+size = Vector3(0.42, 0.08, 0.1)
+
+[node name="StorageModule" type="Node3D"]
+
+[node name="AttachmentBase" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.08, 0)
+mesh = SubResource("Cylinder_base")
+
+[node name="MainHousing" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.52, 0)
+mesh = SubResource("Box_housing")
+
+[node name="UpperTrim" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.86, 0)
+mesh = SubResource("Box_trim")
+
+[node name="StatusLight" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.53, 0.46)
+mesh = SubResource("Box_light")
+
