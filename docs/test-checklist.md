@@ -1,6 +1,6 @@
 # Mine Inc. Prototype Test Checklist
 
-Use this checklist when the relevant feature exists. Record defects and retest affected groups after a change.
+Use this checklist when the relevant feature exists. Record defects and retest affected groups after a change. Milestone 1–5 sections preserve historical milestone and regression criteria; use the Milestone 6 section for the current frozen-build version and final validation.
 
 ## Milestone 1 - Project launch and presentation
 
@@ -14,7 +14,7 @@ Use this checklist when the relevant feature exists. Record defects and retest a
 - [ ] Confirm cool key lighting and warm rim lighting make the pod silhouette readable.
 - [ ] Confirm distant light markers provide visible depth cues while orbiting.
 - [ ] Confirm the HUD displays `Mine Inc.`.
-- [ ] Confirm the HUD displays the current version, `Prototype v0.3.0`.
+- [ ] Historical Milestone 1 evidence records the milestone version; use the Milestone 6 section to verify the current HUD version.
 - [ ] Confirm the HUD displays `OpenAI Build Week 2026`.
 - [ ] Confirm the HUD lists the orbit, zoom, and reset controls.
 - [ ] Confirm no unexpected errors appear in the Godot debugger during launch.
@@ -263,13 +263,6 @@ Use this checklist when the relevant feature exists. Record defects and retest a
 - [ ] Confirm exit and relaunch remain clean.
 - [ ] Confirm no unexpected debugger errors occur through the complete mining, collection, and manufacturing sequence.
 
-## Future milestone - Manufacturing (not yet implemented)
-
-- [ ] The Storage Module recipe and resource cost are displayed clearly.
-- [ ] Manufacturing is unavailable when resources are insufficient.
-- [ ] Manufacturing consumes the correct resource amount exactly once.
-- [ ] Manufacturing produces one placeable Storage Module.
-
 ## Milestone 5 - Cargo presentation and lifecycle
 
 - [ ] Launch or reset and confirm the HUD displays `Prototype v0.5.0`.
@@ -345,3 +338,61 @@ Save/load is not part of the Build Week prototype and has no acceptance tests fo
 - [ ] Closing the running prototype exits without hanging.
 - [ ] Exiting produces no unexpected errors.
 - [ ] Restarting after exit launches normally.
+
+## Milestone 6 — Frozen-build regression
+
+### Version and clean launch
+
+- [ ] Confirm the root `VERSION` contains exactly `0.6.0-buildweek`.
+- [ ] Confirm the HUD displays `Prototype v0.6.0`.
+- [ ] Confirm `game/project.godot` uses `config/version="0.6.0-buildweek"`.
+- [ ] Import a clean copy of `game/project.godot` in Godot Engine v4.6.2.stable.official [71f334935].
+- [ ] Confirm the clean import succeeds without missing resources or parse errors.
+- [ ] Press F5 and confirm the configured prototype scene launches directly.
+- [ ] Confirm no unexpected errors appear in the Godot debugger.
+
+### First regression run
+
+- [ ] Confirm right-drag orbit, bounded mouse-wheel zoom, and `R` camera reset.
+- [ ] Allow a normal asteroid fly-by to complete and confirm it releases no Rock.
+- [ ] Select **Reset Prototype** and confirm a clean run starts.
+- [ ] Select the asteroid and confirm five deliberate mining shots destroy it.
+- [ ] Confirm exactly three Rock pickups appear.
+- [ ] Collect Rock and confirm the left HUD and Cargo Rock displays remain synchronized.
+- [ ] Confirm manufacturing becomes available after sufficient Rock is collected.
+- [ ] Start manufacturing and confirm exactly four Rock are spent once.
+- [ ] Collect remaining Rock during manufacturing and confirm production continues normally.
+- [ ] Confirm one Storage Module appears in Cargo when manufacturing completes.
+- [ ] Select the module and confirm **Attach** becomes enabled.
+- [ ] Select **Attach** and confirm exactly six authored sockets appear.
+- [ ] Confirm camera controls and mining input remain safe during placement.
+- [ ] Select **Cancel Placement** and confirm the module remains selected.
+- [ ] Re-enter placement and click one valid socket.
+- [ ] Confirm exactly one Storage Module attaches.
+- [ ] Confirm Cargo and Manufacturing show consistent attached/installed status.
+
+### Race and reset checks
+
+- [ ] Reset immediately before manufacturing completes and confirm no late module appears.
+- [ ] Reset while the Storage Module is in Cargo and confirm it is removed.
+- [ ] Reset during placement and confirm all socket markers hide and all socket interaction disables.
+- [ ] Reset immediately after attachment and confirm the attached module is removed.
+- [ ] Confirm no attachment socket remains clickable after reset.
+- [ ] Wait after each reset and confirm no late timer or click changes the restored state.
+
+### Input-focus checks
+
+- [ ] Click **Reset Prototype**, press `Space`, and confirm no GUI action occurs.
+- [ ] Click **Manufacture Storage Module**, press `Space`, and confirm no GUI action occurs.
+- [ ] Click the Storage Module Cargo slot, press `Space`, and confirm no GUI action occurs.
+- [ ] Click **Attach**, press `Space`, and confirm no GUI action occurs.
+- [ ] Click **Cancel Placement**, press `Space`, and confirm no GUI action occurs.
+
+### Replay and lifecycle
+
+- [ ] Complete a second full loop after reset.
+- [ ] Attach the Storage Module using a different socket.
+- [ ] Confirm repeated clicks cannot manufacture or attach more than once.
+- [ ] Exit the prototype cleanly.
+- [ ] Relaunch the project and confirm it starts normally.
+- [ ] Perform a final debugger inspection and confirm no unexpected errors.

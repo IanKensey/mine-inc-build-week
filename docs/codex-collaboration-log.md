@@ -565,3 +565,30 @@
 - Captured gameplay video and screenshots showing the Milestone 5 interaction.
 - No faults or unexpected errors were observed during manual testing.
 
+## 2026-07-19 - Milestone 6 audit and closeout preparation
+
+### Read-only audit
+
+- Codex performed a read-only technical, repository, documentation, evidence, and submission-readiness audit of the committed `0.5.0-buildweek` repository.
+- No gameplay blocker was found in the completed observe, mine, collect, manufacture, Cargo, attachment, reset, and replay implementation.
+- The audit identified inconsistent version metadata in `game/project.godot`, stale test wording, and gaps in the README's final collaboration and renderer documentation.
+
+### Human decisions
+
+- The Product Owner and Technical Lead retained the gameplay feature freeze.
+- New gameplay, Windows executable packaging, optional media renaming, and general architecture refactoring were rejected for closeout.
+- The approved correction pass is limited to version consistency, README accuracy, final regression preparation, and collaboration documentation.
+- The intended final version is `0.6.0-buildweek`, with an annotated `v0.6.0-buildweek` tag to be created later by the Product Owner.
+
+### Codex contribution
+
+- Synchronized the root, Godot project metadata, and static HUD version presentation.
+- Updated the README to describe the frozen loop, exact environment, controls, scope, provenance, and human–ChatGPT–Codex workflow accurately.
+- Removed contradictory future-manufacturing wording and added a focused Milestone 6 frozen-build regression checklist.
+- Recorded the audit outcome and approved closeout boundary without changing gameplay implementation.
+
+### Verification still required
+
+- A manual clean-import test remains required.
+- The Milestone 6 frozen-build regression remains required and must not be reported as passed until completed by the Product Owner.
+- The final tag, narrated video, public-link checks, `/feedback` Session ID, and submission remain separate Product Owner closeout actions.

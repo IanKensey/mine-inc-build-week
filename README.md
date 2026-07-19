@@ -4,28 +4,31 @@ Mine Inc. is a space-based industrial strategy game about surviving, mining aste
 
 ## Build Week prototype
 
-The OpenAI Build Week prototype will prove the game's immediate core loop in a small, playable 3D demonstration. It is intentionally not a complete version of the wider game.
+The OpenAI Build Week prototype proves the game's immediate core loop in a focused, playable 3D demonstration. The player begins with an escape pod, mines one passing asteroid, collects Rock, manufactures a Storage Module, and attaches it to visibly expand the pod.
 
 The prototype environment is:
 
 - Godot Engine v4.6.2.stable.official [71f334935]
+- Compatibility renderer
 - Typed GDScript
-- Windows 11
+- Windows 11 target
 
-The current documented prototype version is `0.5.0-buildweek`, stored in the root `VERSION` file. The HUD presents this as `Prototype v0.5.0`.
+The canonical prototype version is `0.6.0-buildweek`, stored in the root `VERSION` file. The HUD presents this as `Prototype v0.6.0`.
 
-## Core gameplay loop
+Repository: https://github.com/IanKensey/mine-inc-build-week
 
-The intended prototype loop is:
+## Completed gameplay loop
 
-1. Observe an escape pod and its surrounding space.
-2. Rotate and zoom the camera.
-3. Track an asteroid along a visible trajectory.
-4. Select and mine the asteroid.
-5. Destroy it and release resources.
-6. Collect the released resources.
-7. Manufacture one module.
-8. Attach the module to the escape pod on a 3D grid.
+1. Observe and orbit the escape pod.
+2. Follow an asteroid's visible authored trajectory.
+3. Select and mine the asteroid.
+4. Destroy it and release Rock.
+5. Collect the drifting Rock pickups.
+6. Manufacture one Storage Module.
+7. See the completed module appear in the fixed Cargo panel.
+8. Select the Storage Module in Cargo.
+9. Enter constrained placement and choose one of six authored attachment sockets.
+10. Attach the module and visibly expand the pod.
 
 ## Repository structure
 
@@ -33,10 +36,11 @@ The intended prototype loop is:
 mine-inc-build-week/
 |-- AGENTS.md                  # Build Week instructions and engineering constraints
 |-- LICENSE                    # MIT License
-|-- README.md                  # Project introduction and repository guide
-|-- docs/                      # Concept, scope, testing, and collaboration notes
+|-- README.md                  # Project introduction, setup, and collaboration summary
+|-- VERSION                    # Canonical prototype version
+|-- docs/                      # Scope, controls, testing, decisions, and collaboration records
 |-- game/                      # Godot project, scenes, and typed GDScript
-`-- media/                     # Project screenshots and media
+`-- media/                     # Milestone screenshots and gameplay evidence
 ```
 
 ## Open and run
@@ -52,47 +56,56 @@ mine-inc-build-week/
 - Hold the right mouse button and move the mouse to orbit around the escape pod.
 - Use the mouse wheel to zoom in and out.
 - Press `R` to reset the camera to its default position.
-- Left-click the asteroid to select it; click empty world space to clear the selection.
-- Press `Space` once to fire one mining-laser shot at the selected asteroid.
+- Left-click the asteroid to select it; click empty world space to clear asteroid selection.
+- Press `Space` once to fire one mining shot at the selected asteroid.
 - Left-click a Rock pickup to collect it immediately.
 - Select **Manufacture Storage Module** after collecting at least four Rock.
-- Select the completed Storage Module in Cargo, select **Attach**, then click one of the six visible pod sockets.
+- Select the completed Storage Module in the fixed Cargo panel.
+- Select **Attach** to display the six valid attachment sockets.
+- Left-click one valid socket to attach the Storage Module.
 - Select **Cancel Placement** to leave placement without consuming the module.
-- Select **Reset Prototype** in the HUD to restart the asteroid fly-by at full health.
+- Select **Reset Prototype** to restore the complete prototype to a clean initial state.
 
 ## Currently implemented
 
 - Runnable Godot project and direct main-scene launch
-- Placeholder escape pod made from built-in Godot geometry and materials
+- Built-in-geometry escape pod, Storage Module, asteroid, pickups, and effects
 - Dark space presentation with built-in lighting and depth markers
-- Bounded orbit and zoom camera focused on the escape pod
-- Camera reset action
+- Bounded orbit and zoom camera with camera reset
 - One predictable asteroid fly-by on an authored path
 - Emissive dotted trajectory generated once from the flight path
-- Left-click asteroid selection with visible selection feedback
-- Discrete mining-laser shots, asteroid health, and HUD health updates
-- One-shot asteroid destruction effect
-- Three predictable drifting Rock pickups released on asteroid destruction
-- Immediate left-click Rock collection and scene-local Rock inventory count
-- Fourteen-second pickup lifetime with clean silent expiration
+- Asteroid selection, visible feedback, integer health, and discrete mining shots
+- Five-hit destruction with a built-in particle effect
+- Three predictable drifting Rock pickups worth two Rock each
+- Immediate click collection, scene-local Rock count, fade, and expiration
 - One fixed Storage Module recipe costing four Rock
 - Three-second manufacturing process with visible progress
-- Fixed six-slot Cargo panel with live Rock and one selectable Storage Module
-- Six authored attachment sockets around the escape pod
-- Attach or cancel placement interaction with normal camera controls preserved
-- One built-in-geometry Storage Module that snaps to the selected socket
-- Repeatable Reset Prototype action
-- Complete Build Week mine, collect, manufacture, and attach gameplay loop
+- Fixed six-slot Cargo presentation with live Rock and one selectable Storage Module
+- Six authored attachment sockets with constrained socket selection
+- Attach and Cancel Placement interaction with camera controls preserved
+- One attached Storage Module and a repeatable complete-loop reset
 
 ## Explicitly deferred
 
 - Moving, rotating, detaching, or deleting an attached module
 - Multiple modules, recipes, attachment cells, or free placement
-- Storage-capacity effects and pod statistics
-- Save/load, which is out of scope for Build Week
-- Collector drone stretch goal
-- All wider-game systems excluded by the Build Week scope
+- Storage-capacity effects or other storage simulation
+- Pirates, power routing, trading, automation, research, and campaign systems
+- Save/load and persistent inventory
+- Collector drones and other post-Build Week features
+
+## Human, ChatGPT, and Codex collaboration
+
+The Product Owner defined the concept and player experience, made the final product decisions, manually tested every milestone, and retained control of every commit and push.
+
+The Technical Lead, using ChatGPT with GPT-5.6, helped define milestone scope, reviewed Codex proposals, challenged unnecessary architecture, reviewed risks, helped diagnose failures, and protected the Build Week deadline and submission boundary.
+
+Codex inspected the repository, proposed bounded implementations, waited for approval, implemented the approved gameplay code, ran automated validation, and produced completion reports. Codex did not commit or push. It accelerated development through a sequence of focused, independently tested milestones rather than generating the entire project from one prompt.
+
+Human testing and runtime evidence materially shaped the implementation. In one case, the Reset Prototype button retained keyboard focus, causing `Space` to activate both mining and reset; the evidence allowed Codex to identify and correct the input-focus conflict. In another, the first Rock fade used `GeometryInstance3D` transparency, which the Compatibility renderer ignores. Manual testing exposed the visual failure, and Codex replaced it with per-instance `StandardMaterial3D` alpha fading.
+
+The governance documents under `docs/` guided scope, approvals, risk review, and testing, but they did not replace Codex's implementation role.
 
 ## Project provenance
 
-The wider Mine Inc. game concept predates OpenAI Build Week. The playable implementation is being created during Build Week using Codex with GPT-5.6.
+The wider Mine Inc. game concept predates OpenAI Build Week. The playable Godot prototype and its meaningful implementation—from the repository baseline through the complete mining, collection, manufacturing, Cargo, and attachment loop—were created during Build Week using Codex and GPT-5.6.

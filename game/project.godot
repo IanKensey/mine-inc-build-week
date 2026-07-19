@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Mine Inc."
-config/version="0.2.0-buildweek"
+config/version="0.6.0-buildweek"
 run/main_scene="res://scenes/main/prototype.tscn"
 config/features=PackedStringArray("4.6")
 
