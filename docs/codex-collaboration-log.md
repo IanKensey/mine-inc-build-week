@@ -592,3 +592,26 @@
 - A manual clean-import test remains required.
 - The Milestone 6 frozen-build regression remains required and must not be reported as passed until completed by the Product Owner.
 - The final tag, narrated video, public-link checks, `/feedback` Session ID, and submission remain separate Product Owner closeout actions.
+
+### Human verification — Milestone 6 frozen build
+
+- I cloned the committed repository into a separate clean directory.
+- Imported `game/project.godot` into Godot Engine v4.6.2.stable.official without copying an existing `.godot` cache.
+- The project launched directly into `Prototype v0.6.0`.
+- The `VERSION`, Godot project metadata, HUD version, and README agree on `0.6.0-buildweek`.
+- An uninterrupted asteroid fly-by releases no Rock.
+- Five deliberate mining shots destroy the asteroid.
+- When destroyed exactly three Rock pickups appear and both Rock displays remain synchronized.
+- Manufacturing spends four Rock exactly once.
+- Resetting immediately before manufacturing completion prevents any late Storage Module.
+- The completed Storage Module appears in Cargo and can be selected.
+- Pressing Attach displays exactly six authored attachment sockets.
+- The camera orbit, zoom, camera reset, mining input, and empty-world clicks remain safe during placement.
+- Selecting Cancel Placement preserves the selected Storage Module.
+- Pressing reset during placement hides and disables all sockets.
+- A successful attachment creates exactly one module and both HUD panels report the installed state consistently.
+- Selecting reset after attachment removes the module and restores the complete prototype.
+- A second complete loop can be played and attached to a different socket.
+- Pressing Space after using each interactive HUD control does not activate that control.
+- I can confirm clean exit, relaunch, and no unexpected debugger errors.
+
